@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Railway Router 測試工具</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-gray-50 text-gray-900">
+  <main class="max-w-5xl mx-auto p-6 space-y-6">
+    <header class="space-y-2">
+      <h1 class="text-2xl font-bold">Railway Router 測試工具</h1>
+      <p class="text-sm text-gray-600">用來快速測試 GET/POST 並顯示回應（狀態碼、標頭、JSON、文字）。</p>
+    </header>
+
+    <!-- 基本設定 -->
+    <section class="bg-white rounded-2xl shadow p-4 space-y-3">
+      <label class="block text-sm font-medium">Router Base URL</label>
+      <div class="flex gap-2">
+        <input id="baseUrl" class="w-full border rounded-xl px-3 py-2" placeholder="https://your-router.onrailway.app" value="https://startup-router-demo-production.up.railway.app/" />
+        <button id="pingBtn" class="px-4 py-2 rounded-xl bg-blue-600 text-white">Ping</button>
+      </div>
+      <p class="text-xs text-gray-500">小提醒：若遇到 CORS 錯誤，需在後端允許前端來源（Access-Control-Allow-Origin）。</p>
+    </section>
+
+    <!-- 快速請求範本 -->
+    <section class="grid md:grid-cols-2 gap-4">
+      <div class="bg-white rounded-2xl shadow p-4 space-y-3">
+        <h2 class="font-semibold">GET 測試</h2>
+        <div class="flex gap-2">
+          <input id="getPath" class="w-full border rounded-xl px-3 py-2" placeholder="例如：/ 或 /health 或 /docs" value="/" />
+          <button id="getBtn" class="px-4 py-2 rounded-xl bg-gray-900 text-white">Send GET</button>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow p-4 space-y-3">
+        <h2 class="font-semibold">POST 測試</h2>
+        <input id="postPath" class="w-full border rounded-xl px-3 py-2" placeholder="例如：/route 或 /api/v1/whatever" value="/route" />
+        <textarea id="postBody" class="w-full border rounded-xl px-3 py-2 font-mono text-sm h-40" spellcheck="false">{
+  "query": "hello",
+  "meta": {"source": "test"}
+}</textarea>
+        <div class="flex items-center gap-2">
+          <label class="text-sm">Content-Type</label>
+          <select id="contentType" class="border rounded-xl px-2 py-1">
+            <option value="application/json" selected>application/json</option>
+            <option value="text/plain">text/plain</option>
+            <option value="application/x-www-form-urlencoded">application/x-www-form-urlencoded</option>
+          </select>
+          <button id="postBtn" class="ml-auto px-4 py-2 rounded-xl bg-emerald-600 text-white">Send POST</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 進階：自訂請求 -->
+    <section class="bg-white rounded-2xl shadow p-4 space-y-3">
+      <h2 class="font-semibold">進階：自訂請求</h2>
+      <div class="grid md:grid-cols-4 gap-2">
+        <select id="method" class="border rounded-xl px-3 py-2">
+          <option>GET</option>
+          <option>POST</option>
+          <option>PUT</option>
+          <option>PATCH</option>
+          <option>DELETE</option>
+        </select>
+        <input id="customPath" class="md:col-span-3 border rounded-xl px-3 py-2" placeholder="/your/path?param=1" />
+      </div>
+      <textarea id="customHeaders" class="w-full border rounded-xl px-3 py-2 font-mono text-sm h-24" placeholder='自訂標頭（JSON），例如：{"Authorization": "Bearer ..."}'></textarea>
+      <textarea id="customBody" class="w-full border rounded-xl px-3 py-2 font-mono text-sm h-32" placeholder='請求 Body（原始字串）'></textarea>
+      <button id="sendCustom" class="px-4 py-2 rounded-xl bg-purple-600 text-white">送出自訂請求</button>
+    </section>
+
+    <!-- 結果區 -->
+    <section class="bg-white rounded-2xl shadow p-4 space-y-4">
+      <h2 class="font-semibold">回應</h2>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="space-y-2">
+          <h3 class="text-sm font-medium text-gray-600">狀態碼與時間</h3>
+          <pre id="meta" class="bg-gray-100 rounded-xl p-3 text-sm overflow-auto"></pre>
+        </div>
+        <div class="space-y-2">
+          <h3 class="text-sm font-medium text-gray-600">標頭</h3>
+          <pre id="headers" class="bg-gray-100 rounded-xl p-3 text-sm overflow-auto"></pre>
+        </div>
+      </div>
+      <div class="space-y-2">
+        <h3 class="text-sm font-medium text-gray-600">Body</h3>
+        <pre id="body" class="bg-gray-100 rounded-xl p-3 text-sm overflow-auto"></pre>
+      </div>
+      <div class="space-y-2">
+        <h3 class="text-sm font-medium text-gray-600">對應 cURL</h3>
+        <pre id="curl" class="bg-gray-100 rounded-xl p-3 text-xs overflow-auto"></pre>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const $ = (id) => document.getElementById(id);
+    const base = () => (new URL($("baseUrl").value)).toString().replace(/\/$/, "");
+
+    function show(meta, headers, bodyText, curl) {
+      $("meta").textContent = meta;
+      $("headers").textContent = headers;
+      $("body").textContent = bodyText;
+      $("curl").textContent = curl;
+    }
+
+    async function request(method, path, headers = {}, body = undefined) {
+      const url = base() + (path.startsWith("/") ? path : "/" + path);
+      const t0 = performance.now();
+      let resp, text;
+      try {
+        resp = await fetch(url, { method, headers, body, mode: "cors" });
+      } catch (e) {
+        show("Fetch 失敗：" + e.message, "(無)", "(無)", "");
+        return;
+      }
+      const t1 = performance.now();
+      const rawHeaders = Array.from(resp.headers.entries())
+        .map(([k, v]) => `${k}: ${v}`)
+        .join("\n");
+      try { text = await resp.text(); } catch { text = ""; }
+
+      // 嘗試格式化 JSON
+      let bodyText = text;
+      try { bodyText = JSON.stringify(JSON.parse(text), null, 2); } catch {}
+
+      // 產生 cURL
+      const headerFlags = Object.entries(headers).map(([k, v]) => `-H ${JSON.stringify(k + ": " + v)}`).join(" ");
+      const dataFlag = body != null ? `--data ${JSON.stringify(body)}` : "";
+      const curl = `curl -X ${method} ${headerFlags ? headerFlags + ' ' : ''}${dataFlag ? dataFlag + ' ' : ''}${JSON.stringify(url)}`;
+
+      show(`HTTP ${resp.status} ${resp.statusText}\n耗時 ${(t1 - t0).toFixed(1)} ms`, rawHeaders, bodyText, curl);
+    }
+
+    // 按鈕事件
+    $("pingBtn").addEventListener("click", () => request("GET", "/"));
+    $("getBtn").addEventListener("click", () => request("GET", $("getPath").value.trim() || "/"));
+
+    $("postBtn").addEventListener("click", () => {
+      const path = $("postPath").value.trim() || "/";
+      const ct = $("contentType").value;
+      let bodyRaw = $("postBody").value;
+      let body;
+      if (ct === "application/json") {
+        try { body = JSON.stringify(JSON.parse(bodyRaw)); } catch { body = bodyRaw; }
+      } else if (ct === "application/x-www-form-urlencoded") {
+        body = new URLSearchParams(JSON.parse(bodyRaw)).toString();
+      } else {
+        body = bodyRaw;
+      }
+      request("POST", path, {"Content-Type": ct}, body);
+    });
+
+    $("sendCustom").addEventListener("click", () => {
+      const method = $("method").value;
+      const path = $("customPath").value.trim() || "/";
+      let headers = {};
+      const headersRaw = $("customHeaders").value.trim();
+      if (headersRaw) {
+        try { headers = JSON.parse(headersRaw); } catch (e) { alert("標頭需為 JSON 物件\n" + e.message); return; }
+      }
+      const bodyRaw = $("customBody").value;
+      request(method, path, headers, bodyRaw || undefined);
+    });
+  </script>
+</body>
+</html>
