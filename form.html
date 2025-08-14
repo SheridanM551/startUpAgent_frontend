@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Data & Report</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <h1>Data & Report</h1>
+    <nav>
+      <a href="HomePage.html">HomePage</a>
+      <a href="FormSection.html">Data & Report</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="form-section">
+      <h2>新創公司基本資料填寫</h2>
+      <form method="POST" action="submit.php">
+        <label>公司名稱：<input type="text" name="company" required></label><br>
+
+        <label>產業領域：
+          <select name="industry" required>
+            <option value="AI">人工智慧</option>
+            <option value="Biotech">生技</option>
+            <option value="Green">綠能</option>
+            <option value="Fintech">金融科技</option>
+          </select>
+        </label><br>
+
+        <label>商業模式簡介：<br>
+          <textarea name="businessModel" rows="4" required></textarea>
+        </label><br>
+
+        <button type="submit">提交分析</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>版權所有 &copy; 2025</p>
+  </footer>
+
+</body>
+</html>
+

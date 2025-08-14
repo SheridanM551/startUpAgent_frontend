@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Form Completed</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- 字體 -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Orbitron:wght@600&display=swap" rel="stylesheet">
+
+  <!-- 自訂 CSS -->
+  <style>
+    .font-orbitron { font-family: 'Orbitron', sans-serif; }
+    .font-inter { font-family: 'Inter', sans-serif; }
+    html { scroll-behavior: smooth; }
+    .glow-overlay {
+      background: radial-gradient(circle at 50% 50%, rgba(0, 183, 255, 0.12), transparent 70%);
+      animation: glow 6s ease-in-out infinite alternate;
+    }
+    @keyframes glow {
+      0% { background-position: 50% 50%; }
+      100% { background-position: 60% 40%; }
+    }
+  </style>
+</head>
+
+<body class="text-white font-inter scroll-smooth">
+
+  <!-- 導覽列 -->
+  <header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-8 py-4 bg-black/40 backdrop-blur-md">
+    <div class="flex items-center gap-2">
+      <span class="text-2xl font-orbitron font-bold text-white">Startup Program</span>
+    </div>
+    <nav class="space-x-6 text-white text-lg font-medium hidden sm:block">
+      <a href="index.html#home" class="hover:text-blue-400 transition">Home</a>
+      <a href="index.html#about" class="hover:text-blue-400 transition">About</a>
+      <a href="index.html#pricing" class="hover:text-blue-400 transition">Pricing</a>
+      <a href="index.html#contact" class="hover:text-blue-400 transition">Contact</a>
+    </nav>
+  </header>
+
+  <!-- 完成頁內容 -->
+  <section class="relative min-h-screen flex flex-col items-center justify-center text-center px-6 pt-32"
+           style="background-image: url('material/BG.gif'); background-size: cover; background-position: center;">
+    <div class="absolute inset-0 glow-overlay z-0"></div>
+    <div class="absolute inset-0 bg-black/70 backdrop-blur-md z-0"></div>
+
+    <div class="relative z-10 max-w-3xl space-y-6">
+      <h1 class="text-4xl sm:text-5xl font-orbitron font-bold">Congratulations!</h1>
+      <p class="text-lg sm:text-xl leading-relaxed">
+        You have successfully submitted your information.<br>
+        Please wait a moment while we prepare the most comprehensive industry insights and reports for you.
+      </p>
+      <a href="index.html"
+         class="inline-block mt-6 bg-gradient-to-r from-sky-400 to-blue-600 hover:from-sky-500 hover:to-blue-700 text-white font-semibold text-lg px-6 py-3 rounded-xl shadow-lg transition duration-300">
+        Back to Home
+      </a>
+    </div>
+  </section>
+</body>
+</html>

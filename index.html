@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Startup Program</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- 字體 -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Orbitron:wght@600&display=swap" rel="stylesheet">
+
+  <!-- 自訂 CSS -->
+  <style>
+    .font-orbitron { font-family: 'Orbitron', sans-serif; }
+    .font-inter { font-family: 'Inter', sans-serif; }
+    html { scroll-behavior: smooth; }
+
+    /* Glow 動畫背景層 */
+    .glow-overlay {
+      background: radial-gradient(circle at 50% 50%, rgba(0, 183, 255, 0.12), transparent 70%);
+      animation: glow 6s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      0% { background-position: 50% 50%; }
+      100% { background-position: 60% 40%; }
+    }
+  </style>
+</head>
+
+<body class="text-white font-inter scroll-smooth">
+
+  <!-- 🔼 導覽列 -->
+  <header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-8 py-4 bg-black/40 backdrop-blur-md">
+    <div class="flex items-center gap-2">
+
+      <span class="text-2xl font-orbitron font-bold text-white">Startup Program</span>
+    </div>
+    <nav class="space-x-6 text-white text-lg font-medium hidden sm:block">
+      <a href="#home" class="hover:text-blue-400 transition">Home</a>
+      <a href="#about" class="hover:text-blue-400 transition">About</a>
+      <a href="#pricing" class="hover:text-blue-400 transition">Pricing</a>
+      <a href="#contact" class="hover:text-blue-400 transition">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Page1-1 首頁 -->
+  <section id="home" class="relative min-h-screen flex flex-col items-center justify-center text-center px-4 pt-32"
+           style="background-image: url('material/BG.gif'); background-size: cover; background-position: center;">
+    
+    <!-- 🌌 Glow 動畫背景疊層 -->
+    <div class="absolute inset-0 glow-overlay z-0"></div>
+
+    <!-- 主要內容 -->
+    <div class="z-10">
+      <h1 class="text-4xl sm:text-5xl md:text-6xl font-orbitron font-semibold leading-tight mb-6">
+        An intelligent assistant<br>for startups
+      </h1>
+      <p class="text-lg sm:text-xl text-gray-200 leading-relaxed max-w-3xl mx-auto">
+        Generate investor-ready proposal reports, Combining interactive AI guidance, cutting-edge industry insights, and data analytics.
+      </p>
+    </div>
+
+    <!-- ⌄ 向下滑動提示箭頭 -->
+    <div class="absolute bottom-10 z-10 animate-bounce">
+      <a href="#about" class="text-white text-3xl">⌄</a>
+    </div>
+  </section>
+
+  <!-- Page1-2 About Us -->
+  <section id="about"
+          class="min-h-screen flex flex-col justify-center items-center bg-[url('material/BG.gif')] bg-cover bg-center relative px-6 text-center">
+
+    <!-- 黑色半透明遮罩 -->
+    <div class="absolute inset-0 bg-black/70 backdrop-blur-md"></div>
+
+    <!-- 實際內容 -->
+    <div class="relative z-10 max-w-3xl">
+      <h2 class="text-3xl sm:text-4xl font-orbitron font-bold mb-10 text-white">About Us</h2>
+
+      <ul class="text-left text-lg text-white space-y-6">
+        <li class="flex items-start gap-3">
+          <span class="text-red-400 text-2xl">✔</span>
+          <span><strong>Complete a guided questionnaire</strong> with AI chatbot assistance</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-red-400 text-2xl">✔</span>
+          <span><strong>Explore current industry trends</strong> via dynamic word clouds</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-red-400 text-2xl">✔</span>
+          <span><strong>Visualize predictive analytics dashboards</strong> for success rate and market position</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-red-400 text-2xl">✔</span>
+          <span><strong>Automatically generate and refine</strong> investment proposal reports through conversation</span>
+        </li>
+      </ul>
+    </div>
+    <!-- ⌄ 向下滑動提示箭頭 -->
+    <div class="absolute bottom-10 z-10 animate-bounce">
+      <a href="#cta" class="text-white text-3xl">⌄</a>
+    </div>
+  </section>
+
+  <!-- Page1-3 CTA（Let's Get Started） -->
+  <section id="cta"
+            class="min-h-screen flex flex-col justify-center items-center bg-[url('material/BG.gif')] bg-cover bg-center relative px-6 text-center">
+
+    <!-- 黑色透明遮罩 -->
+    <div class="absolute inset-0 bg-black/70 backdrop-blur-md"></div>
+
+    <!-- 內容區塊 -->
+    <div class="relative z-10 max-w-2xl space-y-6">
+      <h2 class="text-2xl sm:text-3xl md:text-4xl font-semibold text-white">
+        This is your moment !
+      </h2>
+      <p class="text-lg sm:text-xl text-white">
+        Let AI help you craft a pitch that speaks your vision and wins hearts 🔥
+      </p>
+      <p class="text-lg sm:text-xl text-white">
+        If you're ready—we're ready. Let’s go！
+      </p>
+
+      <!-- ✅ 修改後的按鈕 -->
+      <a href="https://www.surveycake.com/s/NNX7N" target="_blank"
+        class="inline-block mt-4 bg-gradient-to-r from-sky-400 to-blue-600 hover:from-sky-500 hover:to-blue-700 text-white font-semibold text-lg px-6 py-3 rounded-xl shadow-lg transition duration-300">
+        Let's Get Started
+      </a>
+    </div>
+  </section>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
