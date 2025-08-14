@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Survey-like 表單模板</title>
+    <link rel="stylesheet" href="survey.css" />
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="brand-dot"></div>
+            <div>
+                <div class="title">Construct your own survey</div>
+                <div class="subtitle">Please answer the following questions:</div>
+            </div>
+        </div>
+
+        <div class="progress-card">
+            <div class="progress-wrap" aria-label="完成進度">
+                <div id="progressBar" class="progress-bar"></div>
+            </div>
+            <div class="progress-line">
+                <div class="progress-text"><span id="answeredCount">0</span> / <span id="totalCount">0</span> questions
+                    answered</div>
+                <div class="progress-percent" id="progressPercent">0%</div>
+            </div>
+        </div>
+
+        <div id="pageRoot" class="stack" style="margin-top:16px;"></div>
+
+        <div class="pager">
+            <button id="prevBtn" class="btn btn-ghost" type="button">← Previous</button>
+            <div class="steps" id="steps"></div>
+            <div style="display:flex; gap:8px;">
+                <button id="nextBtn" class="btn btn-primary" type="button">Next →</button>
+                <button id="submitBtn" class="btn btn-primary" type="button" style="display:none;">Submit</button>
+            </div>
+        </div>
+
+        <div class="footer">© 2025 Start Up Agent Project</div>
+    </div>
+
+    <script src="survey.js"></script>
+</body>
+
+</html>
