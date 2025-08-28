@@ -17,7 +17,7 @@
     <section class="bg-white rounded-2xl shadow p-4 space-y-3">
       <label class="block text-sm font-medium">Router Base URL</label>
       <div class="flex gap-2">
-        <input id="baseUrl" class="w-full border rounded-xl px-3 py-2" placeholder="https://your-router.onrailway.app" value="https://startup-router-demo-production.up.railway.app/" />
+        <input id="baseUrl" class="w-full border rounded-xl px-3 py-2" placeholder="https://your-router.onrailway.app" value="https://startupagentbackend-production.up.railway.app/" />
         <button id="pingBtn" class="px-4 py-2 rounded-xl bg-blue-600 text-white">Ping</button>
       </div>
       <p class="text-xs text-gray-500">小提醒：若遇到 CORS 錯誤，需在後端允許前端來源（Access-Control-Allow-Origin）。</p>
@@ -35,10 +35,9 @@
 
       <div class="bg-white rounded-2xl shadow p-4 space-y-3">
         <h2 class="font-semibold">POST 測試</h2>
-        <input id="postPath" class="w-full border rounded-xl px-3 py-2" placeholder="例如：/route 或 /api/v1/whatever" value="/route" />
+        <input id="postPath" class="w-full border rounded-xl px-3 py-2" placeholder="例如：/test_llm, /chat" value="/test_llm" />
         <textarea id="postBody" class="w-full border rounded-xl px-3 py-2 font-mono text-sm h-40" spellcheck="false">{
-  "query": "hello",
-  "meta": {"source": "test"}
+  "prompt": "briefly describe NTHU"
 }</textarea>
         <div class="flex items-center gap-2">
           <label class="text-sm">Content-Type</label>

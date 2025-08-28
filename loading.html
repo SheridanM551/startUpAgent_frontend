@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Loading...</title>
+    <link rel="stylesheet" href="loading.css" />
+</head>
+<body>
+    <div class="card">
+        <div class="hdr">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M12 2L2 7l10 5 10-5-10-5Zm0 8L2 5m10 5 10-5M2 7v10l10 5 10-5V7"
+                      stroke="white" stroke-opacity=".85" stroke-width="1.3"
+                      stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <div class="title">Survey Processing</div>
+        </div>
+
+        <div class="sub">Your survey information has been sent to the backend. The system is currently executing the following steps, and the results will be displayed immediately upon completion.</div>
+
+        <div class="kvs" id="meta">
+            <div class="kv" id="elapsed">Elapsed Time: 0.0s</div>
+            <div class="kv">Status: <span id="status">Waiting for Submission</span></div>
+            <div class="kv">API: <span id="apiBase">http://127.0.0.1:8000/api/infer</span></div>
+        </div>
+
+        <div class="row">
+            <!-- Flow steps -->
+            <div class="flow" id="flowBox" aria-live="polite"></div>
+
+            <!-- Loading -->
+            <div class="loading" id="loadingBox">
+                <div class="spinner" role="status" aria-label="loading"></div>
+                <div>
+                    <div>Processing</div>
+                    <div class="sub">Depending on the amount of data, this may take a few minutes; if it times out, a retry will be automatically displayed.</div>
+                </div>
+            </div>
+
+            <!-- Error -->
+            <div class="jsonbox bad" id="errorBox" style="display:none;"></div>
+
+            <!-- Result JSON -->
+            <div class="jsonbox" id="resultBox" style="display:none;"></div>
+
+            <!-- 操作按鈕 -->
+            <div class="btns">
+                <button id="retryBtn">Retry</button>
+                <button id="backBtn">Back</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="loading.js"></script>
+</body>
+</html>

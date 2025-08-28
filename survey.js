@@ -1,126 +1,33 @@
 // === 可依需求調整的設定 ===
 const PAGE_SIZE = 3; // 每頁題數
-const redirectUrl = "index.html";
+const redirectUrl = "loading.html";
 
 // 題目：直接寫死於程式碼
-/** type: 'radio' | 'checkbox' | 'text' */
+// Put these two arrays BEFORE QUESTIONS
+const Industry_Group_Entire = [
+  'Artificial Intelligence','Hardware','Data','Resource','Software','IT','Sustainability','Health Care','Science',
+  'Financial','Transportation','Food','Media','Goverment','Community','Sales','Gaming','Energy','Sports','Internet',
+  'Real Estate','Clothing','Travel','Invest','Manufacturing','Education','Administrative Services','Services','Other',
+  'Consumer Goods','Shopping','Electronics','Biotechnology','Unknown','Events','Privacy'
+];
+
+const Current_Country = [
+  'United States','France','United Kingdom','Sweden','Germany','Israel','Ireland','Spain','Italy','Canada','Hong Kong',
+  'India','China','South Korea','Netherlands','Nigeria','Finland','South Africa','Mexico','Poland','Singapore','Belgium',
+  'Saint Kitts and Nevis','Switzerland','Unknown','Portugal','Australia','Norway','Egypt','Cayman Islands','Denmark',
+  'Czechia','Austria','Brazil','Chile','Isle of Man','Kenya','Türkiye','Luxembourg','Taiwan','New Zealand'
+];
+
+// Replace your existing QUESTIONS with this:
 const QUESTIONS = [
-  {
-    id: 'category_list',
-    type: 'checkbox',
-    required: true,
-    title: 'Category list 📋 — Please indicate which industry category or categories your company\'s product falls under.',
-    options: [
-      'Media & Entertainment',
-      'Social & Communication',
-      'Travel & Tourism',
-      'Design & Creative',
-      'Gaming',
-      'Health & Wellness',
-      'Finance & Business',
-      'E-Commerce & Retail',
-      'Real Estate',
-      'Marketing & Advertising',
-      'Enterprise Solutions',
-      'Technology',
-      'Artificial Intelligence',
-      'Data & Analytics',
-      'Security',
-      'Startups & Innovation',
-      'Mobility & Transportation',
-      'Energy & Environment',
-      'Education',
-      'Lifestyle & Local',
-      'Others'
-    ]
-  },
-  {
-    id: 'market',
-    type: 'radio',
-    required: true,
-    title: 'Target Market 🔎 — Please indicate the target market(s) your company is addressing.',
-    options: [
-      'Software',
-      'IoT/Hardware',
-      'Biotech/Health',
-      'Mobile',
-      'E-Commerce',
-      'Ad/Marketing',
-      'Media/News',
-      'Finance',
-      'Entertainment',
-      'Education',
-      'Analytics',
-      'Travel',
-      'Security',
-      'Transportation',
-      'Real Estate',
-      'Food/Agricultural',
-      'Legal/Government',
-      'Energy'
-    ]
-  },
-  {
-    id: 'funding_total_usd',
-    type: 'text', // 模板以 textarea 呈現，如需數字驗證可再加上自訂檢核
-    required: true,
-    title: 'Initial Funding Available (USD) 💰 — Please enter the amount of initial funding currently available for your project.',
-    placeholder: 'e.g., 50000'
-  },
-  {
-    id: 'country',
-    type: 'text',
-    required: true,
-    title: 'Target Country 🌍 — Please specify the country or countries your product is primarily targeting (official names only).',
-    placeholder: 'e.g., United States; Japan'
-  },
-  {
-    id: 'region',
-    type: 'text',
-    required: true,
-    title: 'Target Region 🗺️ — Please specify the region(s) your product is targeting, including Region / State or Metropolitan Area (Official names only).',
-    placeholder: 'e.g., California; Kanto'
-  },
-  {
-    id: 'city',
-    type: 'text',
-    required: true,
-    title: 'City 🏙️ — Please specify the city or cities your product is targeting. (Official names only)',
-    placeholder: 'e.g., San Francisco; Tokyo'
-  },
-  {
-    id: 'funding_rounds',
-    type: 'radio',
-    required: true,
-    title: 'Funding Rounds 💵 — Please specify the funding round(s) your company has completed or is currently in.',
-    options: ['Pre-Seed', 'Seed', 'Series A', 'Series B', 'Series C']
-  },
-  {
-    id: 'funding_method',
-    type: 'checkbox',
-    required: true,
-    title: 'Funding Method 💰 — Please select the funding method(s) your company has already received or is currently pursuing. (Multiple selections allowed)',
-    options: [
-      'Seed',
-      'Venture',
-      'Equity_crowdfunding',
-      'Convertible_note',
-      'Debt_financing',
-      'Angel',
-      'Grant',
-      'Private_equity',
-      'Post_ipo_equity',
-      'Post_ipo_debt',
-      'Undisclosed'
-    ]
-  },
-  {
-    id: 'brief_description',
-    type: 'text',
-    required: true,
-    title: 'Brief Description 🚀 — Please briefly describe your company\'s key characteristics, current development stage, challenges faced, and future goals. (≈300 words)',
-    placeholder: 'Describe your product, traction, challenges, and goals…'
-  }
+  { id: 'Industry_Group', type: 'radio', required: true, title: 'Industry Group', options: Industry_Group_Entire },
+  { id: 'country', type: 'radio', required: true, title: 'Current Country', options: Current_Country },
+  { id: 'current_employees', type: 'number', required: true, title: 'Current Employees' },
+  { id: 'total_funding', type: 'number', required: true, title: 'Total Funding (USD)' },
+  { id: 'founded', type: 'number', required: true, title: 'Founded (Year)' },
+  { id: 'current_objectives', type: 'text', required: true, title: 'Current Objectives (separate with semicolons)', placeholder: 'e.g., expand into tier-2 cities; integrate AI recommendations' },
+  { id: 'strengths', type: 'text', required: true, title: 'Strengths', placeholder: 'e.g., large local user base; mobile-first adoption' },
+  { id: 'weaknesses', type: 'text', required: true, title: 'Weaknesses', placeholder: 'e.g., low margins; seasonal demand swings' }
 ];
 
 
@@ -229,17 +136,39 @@ function renderPage() {
         card.appendChild(wrap);
     }
 
-    if (q.type === 'text') {
-        const ta = document.createElement('textarea');
-        ta.className = 'textarea';
-        ta.placeholder = q.placeholder || '請輸入…';
-        ta.value = state.answers[q.id] || '';
-        ta.addEventListener('input', () => {
+    if (q.type === 'number') {
+      const inp = document.createElement('input');
+      inp.type = 'number';
+      inp.className = 'text-input';
+
+      // 基本限制
+      if (q.id === 'current_employees' || q.id === 'total_funding') inp.min = 0;
+      if (q.id === 'founded') { inp.min = 1900; inp.max = new Date().getFullYear(); }
+
+      if (state.answers[q.id] !== undefined && state.answers[q.id] !== null) {
+        inp.value = state.answers[q.id];
+      }
+
+      inp.addEventListener('input', () => {
+        const v = inp.value.trim();
+        state.answers[q.id] = v === '' ? null : Number(v);
+        updateProgress();
+        updatePager();
+      });
+
+      card.appendChild(inp);
+    } else if (q.type === 'text') {
+      // 這是你原本的文字區塊（可保留、只把 placeholder 換成英文）
+      const ta = document.createElement('textarea');
+      ta.className = 'textarea';
+      ta.placeholder = q.placeholder || 'Please type here…';
+      ta.value = state.answers[q.id] || '';
+      ta.addEventListener('input', () => {
         state.answers[q.id] = ta.value.trim();
         updateProgress();
         updatePager();
-        });
-        card.appendChild(ta);
+      });
+      card.appendChild(ta);
     }
 
     pageRoot.appendChild(card);
@@ -251,10 +180,11 @@ function renderPage() {
 function countAnswered() {
     let n = 0;
     for (const q of QUESTIONS) {
-    const ans = state.answers[q.id];
-    if (q.type === 'text' && typeof ans === 'string' && ans.length > 0) n++;
-    if (q.type === 'radio' && typeof ans === 'string' && ans) n++;
-    if (q.type === 'checkbox' && Array.isArray(ans) && ans.length > 0) n++;
+      const ans = state.answers[q.id];
+      if (q.type === 'text' && typeof ans === 'string' && ans.length > 0) n++;
+      if (q.type === 'radio' && typeof ans === 'string' && ans) n++;
+      if (q.type === 'checkbox' && Array.isArray(ans) && ans.length > 0) n++;
+      if (q.type === 'number' && Number.isFinite(ans)) n++;
     }
     return n;
 }
@@ -272,11 +202,12 @@ function validatePage(pageIdx) {
     const start = pageIdx * PAGE_SIZE;
     const slice = QUESTIONS.slice(start, start + PAGE_SIZE);
     for (const q of slice) {
-    if (!q.required) continue;
-    const ans = state.answers[q.id];
-    if (q.type === 'text' && !(typeof ans === 'string' && ans.length > 0)) return false;
-    if (q.type === 'radio' && !(typeof ans === 'string' && ans)) return false;
-    if (q.type === 'checkbox' && !(Array.isArray(ans) && ans.length > 0)) return false;
+      if (!q.required) continue;
+      const ans = state.answers[q.id];
+      if (q.type === 'text' && !(typeof ans === 'string' && ans.length > 0)) return false;
+      if (q.type === 'radio' && !(typeof ans === 'string' && ans)) return false;
+      if (q.type === 'checkbox' && !(Array.isArray(ans) && ans.length > 0)) return false;
+      if (q.type === 'number' && !Number.isFinite(ans)) return false;
     }
     return true;
 }
@@ -291,25 +222,11 @@ function updatePager() {
     submitBtn.disabled = !validatePage(state.page);
 }
 
-function handleSubmit() {
-    if (!validatePage(state.page)) { shake(submitBtn); return; }
-    const payload = buildPayload();
-    if (redirectUrl) {
-    // 送出前可在此進行 fetch/post
-    // fetch('YOUR_ENDPOINT', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
-    //   .catch(console.error)
-    //   .finally(() => window.location.href = redirectUrl);
-    window.location.href = redirectUrl;
-    return;
-    }
-    renderResult(payload);
-}
 
 function buildPayload() {
     return {
     submittedAt: new Date().toISOString(),
     answers: { ...state.answers },
-    meta: { totalQuestions: QUESTIONS.length, pageSize: PAGE_SIZE }
     };
 }
 
@@ -346,6 +263,20 @@ function shake(el) {
     if (++i >= x.length) { clearInterval(id); el.style.transform = ''; }
     }, 24);
 }
+
+// main
+
+function handleSubmit() {
+  if (!validatePage(state.page)) { shake(submitBtn); return; }
+  const payload = state.answers;
+
+  // 將 payload 暫存到 sessionStorage，再導頁
+  sessionStorage.setItem("surveyPayload", JSON.stringify(payload));
+  // 你的結果頁路徑（依部署調整）
+  window.location.href = redirectUrl;
+}
+
+
 
 // 啟動
 window.addEventListener('DOMContentLoaded', init);

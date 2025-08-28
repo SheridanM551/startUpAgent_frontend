@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <title>Startup Result</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- 簡潔風格 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <style>
+    :root { --bg:#0b0f14; --card:#131a22; --ink:#e7eef7; --muted:#9fb3c8; --accent:#4db6ff; --bad:#ff6b6b; --ok:#ffd166; --good:#5ad19a; }
+    body{ margin:0; font-family: ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial; background:var(--bg); color:var(--ink); }
+    .wrap{ max-width:1100px; margin:24px auto; padding:0 16px; }
+    .row{ display:grid; gap:16px; }
+    .grid-2{ grid-template-columns: 1fr 1fr; }
+    .grid-3{ grid-template-columns: repeat(3, 1fr); }
+    .card{ background:var(--card); border:1px solid #1e2733; border-radius:16px; padding:16px; box-shadow:0 1px 12px #0006; }
+    .title{ font-size:20px; margin:0 0 8px; }
+    .muted{ color:var(--muted); }
+    .badge{ padding:2px 8px; border-radius:999px; font-size:12px; border:1px solid #2a3646; color:#cfe5ff; }
+    .chip{ padding:6px 10px; border-radius:8px; background:#0f1720; border:1px solid #1f2a38; }
+    .kpi{ display:flex; gap:8px; align-items:center; }
+    .kpi .dot{ width:10px; height:10px; border-radius:50%; background:var(--good);}
+    .table{ width:100%; border-collapse: collapse; }
+    .table th,.table td{ border-top:1px solid #223041; padding:10px 8px; text-align:left; vertical-align:top;}
+    .table th{ color:#b8c9dc; font-weight:600; }
+    .btn{ border:1px solid #274257; background:#0f1b27; color:#cfe5ff; padding:8px 12px; border-radius:10px; cursor:pointer;}
+    .btn.active{ background:var(--accent); color:#00121f; border-color:transparent; }
+    .pill{ display:inline-flex; gap:6px; align-items:center; border:1px solid #213244; padding:6px 10px; border-radius:999px; }
+    .hero{ font-size:18px; line-height:1.5; }
+    .grid-auto{ display:grid; grid-template-columns: 220px 1fr; gap:12px; }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+</head>
+<body>
+  <div class="wrap">
+    <!-- Source Switch -->
+    <div class="row grid-auto card" style="align-items:center;">
+      <div><strong>Data Source</strong></div>
+      <div>
+        <button id="btnGrowjo" class="btn active">Growjo</button>
+        <button id="btnCrunchbase" class="btn">Crunchbase</button>
+      </div>
+    </div>
+
+    <!-- Snapshot -->
+    <div class="card">
+      <h2 class="title">Company Snapshot</h2>
+      <div id="snapshot" class="row grid-3"></div>
+    </div>
+
+    <!-- Quick Diagnosis -->
+    <div class="card">
+      <h2 class="title">Quick Diagnosis</h2>
+      <p id="quickDiagnosis" class="hero"></p>
+    </div>
+
+    <!-- Key Differences -->
+    <div class="card">
+      <h2 class="title">Key Differences vs. Peers</h2>
+      <table class="table" id="keyDiffs">
+        <thead><tr><th>Dimension</th><th>Your Company</th><th>Top Peer</th><th>So what</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <!-- Actions + Matrix -->
+    <div class="row grid-2">
+      <div class="card">
+        <h2 class="title">Prioritized Actions (Score)</h2>
+        <canvas id="barActions" height="220"></canvas>
+      </div>
+      <div class="card">
+        <h2 class="title">Effort vs Impact</h2>
+        <canvas id="scatterEI" height="220"></canvas>
+      </div>
+    </div>
+
+    <!-- 30/60/90 -->
+    <div class="card">
+      <h2 class="title">30–60–90 Plan</h2>
+      <div class="row grid-3" id="plan"></div>
+    </div>
+
+    <!-- Risks & KPIs -->
+    <div class="row grid-2">
+      <div class="card">
+        <h2 class="title">Risks & Mitigations</h2>
+        <table class="table" id="risksTbl"><thead><tr><th>Risk</th><th>Mitigation</th></tr></thead><tbody></tbody></table>
+      </div>
+      <div class="card">
+        <h2 class="title">Metrics to Track</h2>
+        <div id="kpis" class="row grid-3"></div>
+      </div>
+    </div>
+
+    <!-- Advanced & Questions -->
+    <div class="row grid-2">
+      <div class="card">
+        <h2 class="title">Advanced Suggestions</h2>
+        <div id="advanced"></div>
+      </div>
+      <div class="card">
+        <h2 class="title">Open Questions</h2>
+        <ul id="questions"></ul>
+      </div>
+    </div>
+
+    <!-- Crunchbase news placeholder -->
+    <div id="newsBlock" class="card" style="display:none;">
+      <h2 class="title">News (Crunchbase)</h2>
+      <p class="muted">即將推出：依你定義的 JSON（含 citations）渲染卡片與清單。</p>
+    </div>
+  </div>
+
+  <script src="./result.js"></script>
+</body>
+</html>
