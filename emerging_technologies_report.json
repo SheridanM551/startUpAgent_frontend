@@ -1,0 +1,102 @@
+{
+  "emerging_technologies": [
+    {
+      "technology": "Smart Contact Lenses",
+      "explanation": "Smart contact lenses with biosensors for health monitoring, XR/AR content for gaming, and night vision capabilities.",
+      "maturity": "Early Adopter",
+      "key_players": [
+        "VR/AR Xpanceo"
+      ],
+      "sectors_impacted": [
+        "Healthcare"
+      ],
+      "evidence_urls": [
+        "https://news.crunchbase.com/venture/global-unicorn-count-ai-ecommerce-healthcare-july-2025/"
+      ]
+    },
+    {
+      "technology": "AI-Powered Employee Experience Platforms",
+      "explanation": "Employee experience platforms integrating AI to enhance employee engagement and productivity.",
+      "maturity": "Established",
+      "key_players": [
+        "LumApps"
+      ],
+      "sectors_impacted": [
+        "Professional Services"
+      ],
+      "evidence_urls": [
+        "https://news.crunchbase.com/agtech-foodtech/global-startup-automation-funding-ai-robotics-data/"
+      ]
+    },
+    {
+      "technology": "Digital eSIM Providers",
+      "explanation": "Digital eSIM providers for devices for travelers.",
+      "maturity": "Early Adopter",
+      "key_players": [
+        "Airalo"
+      ],
+      "sectors_impacted": [
+        "Networking"
+      ],
+      "evidence_urls": [
+        "https://news.crunchbase.com/agtech-foodtech/global-startup-automation-funding-ai-robotics-data/"
+      ]
+    },
+    {
+      "technology": "Micromobility and E-Bikes",
+      "explanation": "Yet-to-be-launched products in the micromobility and e-bikes sector.",
+      "maturity": "Early Stage",
+      "key_players": [
+        "Also"
+      ],
+      "sectors_impacted": [
+        "Transportation"
+      ],
+      "evidence_urls": [
+        "https://news.crunchbase.com/agtech-foodtech/global-startup-automation-funding-ai-robotics-data/"
+      ]
+    },
+    {
+      "technology": "AI-Powered Note Taking Scribes",
+      "explanation": "AI-powered note taking scribes integrating into clinical workflows.",
+      "maturity": "Established",
+      "key_players": [
+        "Healthcare Ambience Healthcare"
+      ],
+      "sectors_impacted": [
+        "Healthcare"
+      ],
+      "evidence_urls": [
+        "https://news.crunchbase.com/venture/global-unicorn-count-ai-ecommerce-healthcare-july-2025/"
+      ]
+    },
+    {
+      "technology": "XR/AR Content for Gaming",
+      "explanation": "XR/AR content for gaming on smart contact lenses.",
+      "maturity": "Early Adopter",
+      "key_players": [
+        "VR/AR Xpanceo"
+      ],
+      "sectors_impacted": [
+        "Media and Entertainment"
+      ],
+      "evidence_urls": [
+        "https://news.crunchbase.com/venture/global-unicorn-count-ai-ecommerce-healthcare-july-2025/"
+      ]
+    }
+  ],
+  "highlights": [
+    "AI-powered technologies are driving growth in various sectors.",
+    "Smart contact lenses and digital eSIM providers are emerging technologies.",
+    "Employee experience platforms and AI-powered note taking scribes are established technologies.",
+    "Micromobility and e-bikes are a new area of focus.",
+    "XR/AR content for gaming is an emerging opportunity.",
+    "Agtech funding is concentrated in larger companies.",
+    "Robotics startup funding is on the rise.",
+    "Vertical farming venture capital has dried up, but startups are still investing."
+  ],
+  "as_of_utc": "2025-08-14T05:01:55.099709+00:00",
+  "window_start_utc": "2025-08-07T05:01:55.099709+00:00",
+  "window_end_utc": "2025-08-14T05:01:55.099709+00:00",
+  "num_sources": 2
+}

@@ -8,21 +8,18 @@
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- 字體 -->
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Orbitron:wght@600&display=swap" rel="stylesheet">
 
-  <!-- 自訂 CSS -->
+  <!-- Custom CSS -->
   <style>
     .font-orbitron { font-family: 'Orbitron', sans-serif; }
     .font-inter { font-family: 'Inter', sans-serif; }
     html { scroll-behavior: smooth; }
-
-    /* Glow 動畫背景層 */
     .glow-overlay {
       background: radial-gradient(circle at 50% 50%, rgba(0, 183, 255, 0.12), transparent 70%);
       animation: glow 6s ease-in-out infinite alternate;
     }
-
     @keyframes glow {
       0% { background-position: 50% 50%; }
       100% { background-position: 60% 40%; }
@@ -32,10 +29,9 @@
 
 <body class="text-white font-inter scroll-smooth">
 
-  <!-- 🔼 導覽列 -->
+  <!-- Navbar -->
   <header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-8 py-4 bg-black/40 backdrop-blur-md">
     <div class="flex items-center gap-2">
-
       <span class="text-2xl font-orbitron font-bold text-white">Startup Program</span>
     </div>
     <nav class="space-x-6 text-white text-lg font-medium hidden sm:block">
@@ -46,14 +42,11 @@
     </nav>
   </header>
 
-  <!-- Page1-1 首頁 -->
+  <!-- Page1-1 Home -->
   <section id="home" class="relative min-h-screen flex flex-col items-center justify-center text-center px-4 pt-32"
            style="background-image: url('material/BG.gif'); background-size: cover; background-position: center;">
-    
-    <!-- 🌌 Glow 動畫背景疊層 -->
     <div class="absolute inset-0 glow-overlay z-0"></div>
 
-    <!-- 主要內容 -->
     <div class="z-10">
       <h1 class="text-4xl sm:text-5xl md:text-6xl font-orbitron font-semibold leading-tight mb-6">
         An intelligent assistant<br>for startups
@@ -63,7 +56,7 @@
       </p>
     </div>
 
-    <!-- ⌄ 向下滑動提示箭頭 -->
+    <!-- Scroll hint -->
     <div class="absolute bottom-10 z-10 animate-bounce">
       <a href="#about" class="text-white text-3xl">⌄</a>
     </div>
@@ -71,12 +64,9 @@
 
   <!-- Page1-2 About Us -->
   <section id="about"
-          class="min-h-screen flex flex-col justify-center items-center bg-[url('material/BG.gif')] bg-cover bg-center relative px-6 text-center">
-
-    <!-- 黑色半透明遮罩 -->
+           class="min-h-screen flex flex-col justify-center items-center bg-[url('material/BG.gif')] bg-cover bg-center relative px-6 text-center">
     <div class="absolute inset-0 bg-black/70 backdrop-blur-md"></div>
 
-    <!-- 實際內容 -->
     <div class="relative z-10 max-w-3xl">
       <h2 class="text-3xl sm:text-4xl font-orbitron font-bold mb-10 text-white">About Us</h2>
 
@@ -99,20 +89,17 @@
         </li>
       </ul>
     </div>
-    <!-- ⌄ 向下滑動提示箭頭 -->
+
     <div class="absolute bottom-10 z-10 animate-bounce">
       <a href="#cta" class="text-white text-3xl">⌄</a>
     </div>
   </section>
 
-  <!-- Page1-3 CTA（Let's Get Started） -->
+  <!-- Page1-3 CTA -->
   <section id="cta"
-            class="min-h-screen flex flex-col justify-center items-center bg-[url('material/BG.gif')] bg-cover bg-center relative px-6 text-center">
-
-    <!-- 黑色透明遮罩 -->
+           class="min-h-screen flex flex-col justify-center items-center bg-[url('material/BG.gif')] bg-cover bg-center relative px-6 text-center">
     <div class="absolute inset-0 bg-black/70 backdrop-blur-md"></div>
 
-    <!-- 內容區塊 -->
     <div class="relative z-10 max-w-2xl space-y-6">
       <h2 class="text-2xl sm:text-3xl md:text-4xl font-semibold text-white">
         This is your moment !
@@ -124,21 +111,260 @@
         If you're ready—we're ready. Let’s go！
       </p>
 
-      <!-- ✅ 修改後的按鈕 -->
-      <a href="survey.html" target="_blank"
-        class="inline-block mt-4 bg-gradient-to-r from-sky-400 to-blue-600 hover:from-sky-500 hover:to-blue-700 text-white font-semibold text-lg px-6 py-3 rounded-xl shadow-lg transition duration-300">
-        Let's Get Started
-      </a>
+      <!-- Buttons -->
+      <div class="mt-4 flex items-center justify-center gap-3">
+        <a href="survey.html" target="_blank"
+           class="inline-block bg-gradient-to-r from-sky-400 to-blue-600 hover:from-sky-500 hover:to-blue-700 text-white font-semibold text-lg px-6 py-3 rounded-xl shadow-lg transition duration-300">
+          Let's Get Started
+        </a>
+
+        <!-- NEW: See Reports -->
+        <button id="btnSeeReports"
+                class="inline-block bg-white/10 hover:bg-white/20 text-white font-semibold text-lg px-6 py-3 rounded-xl ring-1 ring-white/40 shadow-lg transition duration-300">
+          See Reports
+        </button>
+      </div>
     </div>
   </section>
 
+  <!-- Reports Modal -->
+  <div id="reportsModal" class="hidden fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm p-4">
+    <div class="mx-auto max-w-6xl bg-white text-slate-900 rounded-2xl shadow-2xl flex flex-col max-h-[85vh] overflow-hidden">
+      <div class="flex items-center justify-between px-5 py-3 border-b">
+        <h3 class="text-lg font-semibold">Reports</h3>
+        <button id="closeReports" class="px-3 py-1 rounded-md text-slate-600 hover:bg-slate-100">Close</button>
+      </div>
+
+      <!-- Tabs -->
+      <nav class="px-4 py-3 border-b flex flex-wrap gap-2 text-sm">
+        <button class="rtab px-3 py-2 rounded-md bg-slate-900 text-white" data-rtab="weekly">Weekly Trends</button>
+        <button class="rtab px-3 py-2 rounded-md hover:bg-slate-200" data-rtab="emerging">Emerging Tech</button>
+        <button class="rtab px-3 py-2 rounded-md hover:bg-slate-200" data-rtab="pricing">Pricing Watch</button>
+        <button class="rtab px-3 py-2 rounded-md hover:bg-slate-200" data-rtab="funding">Funding</button>
+      </nav>
+
+      <!-- Panels -->
+      <div id="reportsBody" class="p-4 overflow-y-auto grow">
+        <section id="rpanel-weekly"   class="rpanel grid gap-3"></section>
+        <section id="rpanel-emerging" class="rpanel hidden grid gap-3"></section>
+        <section id="rpanel-pricing"  class="rpanel hidden grid gap-3"></section>
+        <section id="rpanel-funding"  class="rpanel hidden grid gap-3"></section>
+      </div>
+
+      <div class="px-5 py-2 text-xs text-slate-500 border-t">
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    // ---------- Helpers ----------
+    const $ = s => document.querySelector(s);
+    const $$ = s => Array.from(document.querySelectorAll(s));
+    const esc = s => (s ?? '').toString().replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
+    const link = (url, text) => `<a href="${url}" target="_blank" class="text-sky-700 hover:underline">${esc(text || url)}</a>`;
+
+    // Try plain path first (Live Server), then /static/ (FastAPI mount)
+    async function getLocalJson(path) {
+      const attempts = [path, '/static/' + path].map(p => p.replace(/^\.\//,''));
+      let lastErr;
+      for (const p of attempts) {
+        try {
+          const r = await fetch(p, { cache: 'no-cache' });
+          if (r.ok) return r.json();
+        } catch (e) { lastErr = e; }
+      }
+      throw lastErr || new Error('Failed to fetch ' + path);
+    }
+
+    // Parse $ strings like "$1.2M", "US$5 million", "250000000"
+    function parseUSD(raw) {
+      if (raw == null) return 0;
+      if (typeof raw === 'number') return raw;
+      const s = String(raw).trim();
+      if (/^\d([\d,.\s])*$/i.test(s)) {
+        const n = Number(s.replace(/[, ]/g,''));
+        return Number.isFinite(n) ? n : 0;
+      }
+      const up = s.replace(/[, ]+/g,' ').toUpperCase();
+      const m = up.match(/(?:US\$|\$)\s*([\d.]+)\s*(K|M|B|THOUSAND|MILLION|BILLION)?/i);
+      if (!m) return 0;
+      let n = parseFloat(m[1] || '0');
+      const suf = (m[2] || '').toLowerCase();
+      if (suf === 'k' || suf === 'thousand') n *= 1e3;
+      else if (suf === 'm' || suf === 'million') n *= 1e6;
+      else if (suf === 'b' || suf === 'billion') n *= 1e9;
+      return Number.isFinite(n) ? n : 0;
+    }
+    const usdShort = n => n >= 1e9 ? '$' + (n/1e9).toFixed(1).replace(/\.0$/,'') + 'B'
+                       : n >= 1e6 ? '$' + (n/1e6).toFixed(1).replace(/\.0$/,'') + 'M'
+                       : n >= 1e3 ? '$' + (n/1e3).toFixed(1).replace(/\.0$/,'') + 'K'
+                       : '$' + Math.round(n).toLocaleString();
+
+    function emptyState() {
+      return `<div class="text-sm text-slate-500">No items found.</div>`;
+    }
+
+    // ---------- Renderers ----------
+    function renderWeeklyTrends(data) {
+      const root = $('#rpanel-weekly'); root.innerHTML = '';
+      const items = data.weekly_trends || [];
+      if (!items.length) { root.innerHTML = emptyState(); return; }
+      items.forEach(it => {
+        root.insertAdjacentHTML('beforeend', `
+          <div class="bg-white rounded-xl shadow p-4">
+            <div class="flex items-start justify-between gap-3">
+              <h4 class="text-base font-semibold">${esc(it.topic || '(untitled)')}</h4>
+            </div>
+            <p class="mt-1 text-sm text-slate-700">${esc(it.description || '')}</p>
+            <div class="mt-2 text-xs text-slate-600 flex gap-2 flex-wrap">
+              ${(it.evidence_urls || []).slice(0,5).map(u => link(u, 'source')).join(' ')}
+            </div>
+          </div>
+        `);
+      });
+    }
+
+    function renderEmergingTech(data) {
+      const root = $('#rpanel-emerging'); root.innerHTML = '';
+      const items = data.emerging_technologies || [];
+      if (!items.length) { root.innerHTML = emptyState(); return; }
+      items.forEach(x => {
+        root.insertAdjacentHTML('beforeend', `
+          <div class="bg-white rounded-xl shadow p-4">
+            <div class="flex flex-wrap items-center gap-2">
+              <h4 class="text-base font-semibold">${esc(x.technology || '(technology)')}</h4>
+              ${x.maturity ? `<span class="px-2 py-0.5 text-xs rounded-full bg-slate-100">${esc(x.maturity)}</span>` : ''}
+            </div>
+            <p class="mt-1 text-sm text-slate-700">${esc(x.explanation || '')}</p>
+            ${Array.isArray(x.key_players) && x.key_players.length ? `<div class="mt-2 text-sm"><b>Key players:</b> ${esc(x.key_players.join(', '))}</div>` : ''}
+            ${Array.isArray(x.sectors_impacted) && x.sectors_impacted.length ? `<div class="mt-1 text-sm"><b>Sectors:</b> ${esc(x.sectors_impacted.join(', '))}</div>` : ''}
+            <div class="mt-2 text-xs text-slate-600 flex gap-2 flex-wrap">
+              ${(x.evidence_urls || []).slice(0,5).map(u => link(u, 'source')).join(' ')}
+            </div>
+          </div>
+        `);
+      });
+    }
+
+    function renderPricing(data) {
+      const root = $('#rpanel-pricing'); root.innerHTML = '';
+      const items = data.pricing_changes || [];
+      if (!items.length) { root.innerHTML = emptyState(); return; }
+      items.forEach(p => {
+        root.insertAdjacentHTML('beforeend', `
+          <div class="bg-white rounded-xl shadow p-4">
+            <div class="flex flex-wrap items-center gap-2">
+              <h4 class="text-base font-semibold">${esc(p.company || '(company)')}</h4>
+              ${p.change_type ? `<span class="px-2 py-0.5 text-xs rounded-full bg-slate-100">${esc(p.change_type)}</span>` : ''}
+            </div>
+            <p class="mt-1 text-sm text-slate-700">${esc(p.summary || '')}</p>
+            ${Array.isArray(p.products_affected) && p.products_affected.length ? `<div class="mt-2 text-sm"><b>Products:</b> ${esc(p.products_affected.join(', '))}</div>` : ''}
+            ${p.implications ? `<div class="mt-1 text-sm"><b>Implications:</b> ${esc(p.implications)}</div>` : ''}
+            <div class="mt-2 text-xs text-slate-600 flex gap-2 flex-wrap">
+              ${(p.evidence_urls || []).slice(0,5).map(u => link(u, 'source')).join(' ')}
+            </div>
+          </div>
+        `);
+      });
+    }
+
+    function renderFunding(data) {
+      const root = $('#rpanel-funding'); root.innerHTML = '';
+      const items = data.funding_events || [];
+      if (!items.length) { root.innerHTML = emptyState(); return; }
+
+      // Table
+      const rows = items.map(e => ({ ...e, _amt: parseUSD(e.amount) }))
+                        .sort((a,b) => b._amt - a._amt);
+      root.insertAdjacentHTML('beforeend', `
+        <div class="bg-white rounded-xl shadow p-4 overflow-auto">
+          <table class="min-w-full text-sm">
+            <thead class="border-b bg-slate-50">
+              <tr>
+                <th class="text-left px-3 py-2">Company</th>
+                <th class="text-left px-3 py-2">Amount</th>
+                <th class="text-left px-3 py-2">Round</th>
+                <th class="text-left px-3 py-2">Sector</th>
+                <th class="text-left px-3 py-2">Date</th>
+                <th class="text-left px-3 py-2">Source</th>
+              </tr>
+            </thead>
+            <tbody id="fundingRows"></tbody>
+          </table>
+        </div>
+      `);
+      const tbody = $('#fundingRows');
+      rows.forEach(r => {
+        tbody.insertAdjacentHTML('beforeend', `
+          <tr class="border-b last:border-0">
+            <td class="px-3 py-2">${esc(r.company || '')}</td>
+            <td class="px-3 py-2">${r._amt ? usdShort(r._amt) : esc(r.amount || '')}</td>
+            <td class="px-3 py-2">${esc(r.round || '')}</td>
+            <td class="px-3 py-2">${esc(r.sector || '')}</td>
+            <td class="px-3 py-2">${esc((r.date || '').slice(0,10))}</td>
+            <td class="px-3 py-2">${r.source_url ? link(r.source_url, 'link') : ''}</td>
+          </tr>
+        `);
+      });
+
+      // Cards (optional, nice for scanning)
+      rows.forEach(f => {
+        $('#rpanel-funding').insertAdjacentHTML('beforeend', `
+          <div class="bg-white rounded-xl shadow p-4">
+            <div class="flex flex-wrap items-center gap-2">
+              <h4 class="text-base font-semibold">${esc(f.company || '(company)')}</h4>
+              ${f.round ? `<span class="px-2 py-0.5 text-xs rounded-full bg-slate-100">${esc(f.round)}</span>` : ''}
+              ${f._amt ? `<span class="px-2 py-0.5 text-xs rounded-full bg-slate-100">${usdShort(f._amt)}</span>` : ''}
+            </div>
+            <div class="mt-1 text-sm text-slate-600">${esc(f.sector || '')}${f.date ? ' · ' + esc(f.date) : ''}</div>
+            ${Array.isArray(f.investors) && f.investors.length ? `<div class="mt-2 text-sm"><b>Investors:</b> ${esc(f.investors.join(', '))}</div>` : ''}
+            <div class="mt-2 text-xs text-slate-600">${f.source_url ? link(f.source_url, 'source') : ''}</div>
+          </div>
+        `);
+      });
+    }
+
+    // ---------- Load + UI wiring ----------
+    let reportsLoaded = false;
+
+    async function loadReports() {
+      const [w, e, p, f] = await Promise.all([
+        getLocalJson('weekly_report_structured.json'),
+        getLocalJson('emerging_technologies_report.json'),
+        getLocalJson('pricing_watch.json'),
+        getLocalJson('startup_funding_report.json'),
+      ]);
+      renderWeeklyTrends(w);
+      renderEmergingTech(e);
+      renderPricing(p);
+      renderFunding(f);
+      reportsLoaded = true;
+    }
+
+    // Open / close modal
+    $('#btnSeeReports').addEventListener('click', async () => {
+      $('#reportsModal').classList.remove('hidden');
+      if (!reportsLoaded) {
+        try { await loadReports(); }
+        catch (e) {
+          console.error(e);
+          alert('Could not load local reports. Make sure the four JSON files are in this folder (or under /static).');
+        }
+      }
+    });
+    $('#closeReports').addEventListener('click', () => $('#reportsModal').classList.add('hidden'));
+
+    // Tabs
+    $$('.rtab').forEach(btn => {
+      btn.addEventListener('click', () => {
+        $$('.rtab').forEach(b => b.classList.remove('bg-slate-900','text-white'));
+        btn.classList.add('bg-slate-900','text-white');
+        $$('.rpanel').forEach(p => p.classList.add('hidden'));
+        $('#rpanel-' + btn.dataset.rtab).classList.remove('hidden');
+        $('#reportsBody').scrollTop = 0;
+      });
+    });
+  </script>
 </body>
 </html>
-
-
-
-
-
-
-
-

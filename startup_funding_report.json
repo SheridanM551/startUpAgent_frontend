@@ -1,0 +1,131 @@
+{
+  "funding_events": [
+    {
+      "company": "OpenAI",
+      "sector": "AI",
+      "round": "Series E",
+      "amount": "40000000000",
+      "date": "2023-03-01",
+      "investors": [
+        "SoftBank"
+      ],
+      "source_url": "https://techcrunch.com/2025/08/01/openai-reportedly-raises-8-3b-at-300b-valuation/",
+      "summary": "OpenAI raised $40 billion in a Series E funding round led by SoftBank."
+    },
+    {
+      "company": "Anduril Industries",
+      "sector": "Defense Tech",
+      "round": "Series C",
+      "amount": "2500000000",
+      "date": "2025-07-21",
+      "investors": [
+        "Accel",
+        "General Catalyst"
+      ],
+      "source_url": "https://techcrunch.com/2025/07/21/anduril-alums-raise-24m-series-a-to-bring-military-logistics-out-of-the-excel-spreadsheet-era/",
+      "summary": "Anduril Industries raised $2.5 billion in a Series C funding round."
+    },
+    {
+      "company": "Anysphere",
+      "sector": "AI",
+      "round": "Series C",
+      "amount": "9000000000",
+      "date": "2025-08-01",
+      "investors": [
+        "a16z",
+        "Sequoia"
+      ],
+      "source_url": "https://news.crunchbase.com/ai/anysphere-ai-coding-cursor-funding-valuation/",
+      "summary": "Anysphere raised $9 billion in a Series C funding round."
+    },
+    {
+      "company": "Glean",
+      "sector": "AI",
+      "round": "Series D",
+      "amount": "150000000",
+      "date": "2025-06-20",
+      "investors": [
+        "a16z",
+        "Sequoia"
+      ],
+      "source_url": "https://news.crunchbase.com/venture/ai-powered-work-assistant-glean-valuation-jumps/",
+      "summary": "Glean raised $150 million in a Series D funding round."
+    },
+    {
+      "company": "Eikon Therapeutics",
+      "sector": "Biotech",
+      "round": "Series D",
+      "amount": "351000000",
+      "date": "2025-05-01",
+      "investors": [
+        "a16z",
+        "Sequoia"
+      ],
+      "source_url": "https://news.crunchbase.com/health-wellness-biotech/startup-eikon-therapeutics-series-d-lux/",
+      "summary": "Eikon Therapeutics raised $351 million in a Series D funding round."
+    },
+    {
+      "company": "Apptronik",
+      "sector": "Robotics",
+      "round": "Series C",
+      "amount": "350000000",
+      "date": "2025-07-24",
+      "investors": [
+        "a16z",
+        "Sequoia"
+      ],
+      "source_url": "https://news.crunchbase.com/robotics/apptronik-startup-funding-humanoid-robots-goog/",
+      "summary": "Apptronik raised $350 million in a Series C funding round."
+    },
+    {
+      "company": "Castelion",
+      "sector": "Defense Tech",
+      "round": "Series B",
+      "amount": "350000000",
+      "date": "2025-07-03",
+      "investors": [
+        "a16z",
+        "Sequoia"
+      ],
+      "source_url": "https://techcrunch.com/2025/07/03/castelion-raises-350m-series-b-to-scale-hypersonic-missile-business/",
+      "summary": "Castelion raised $350 million in a Series B funding round."
+    },
+    {
+      "company": "Hadrian",
+      "sector": "Defense Tech",
+      "round": "Series C",
+      "amount": "260000000",
+      "date": "2025-07-17",
+      "investors": [
+        "a16z",
+        "Sequoia"
+      ],
+      "source_url": "https://techcrunch.com/2025/07/17/hadrian-raises-260m-to-build-out-automated-factories-for-space-and-defense-parts/",
+      "summary": "Hadrian raised $260 million in a Series C funding round."
+    },
+    {
+      "company": "Infinite Reality",
+      "sector": "Augmented Reality",
+      "round": "Series C",
+      "amount": "3000000000",
+      "date": "2025-01-01",
+      "investors": [
+        "a16z",
+        "Sequoia"
+      ],
+      "source_url": "https://news.crunchbase.com/agtech-foodtech/biggest-funding-rounds-ai-xai-savvy/",
+      "summary": "Infinite Reality raised $3 billion in a Series C funding round."
+    },
+    {
+      "company": "Instabase",
+      "sector": "Data",
+      "round": "Series D",
+      "amount": "100000000",
+      "date": "2025",
+      "source_url": "https://news.crunchbase.com/venture/data-global-monthly-funding-may-2025/"
+    }
+  ],
+  "as_of_utc": "2025-08-14T06:19:30.119148+00:00",
+  "window_start_utc": "2025-07-15T06:19:30.119148+00:00",
+  "window_end_utc": "2025-08-14T06:19:30.119148+00:00"
+}

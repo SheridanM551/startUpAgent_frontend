@@ -1,0 +1,64 @@
+{
+  "weekly_trends": [
+    {
+      "topic": "AI Autonomous Agents",
+      "description": "AI autonomous agents are a top trend for seed investment in 2025, with a focus on enterprise customers. Startups working on autonomous AI agents, assistants, and companions are seeing significant funding activity, with around $700 million invested in seed rounds for artificial intelligence companies with descriptions tied to autonomous agents.",
+      "evidence_urls": [
+        "https://news.crunchbase.com/ai/autonomous-agents-top-seed-trend-2025/"
+      ]
+    },
+    {
+      "topic": "Startup Acquisitions",
+      "description": "More startups are buying other startups in 2025, particularly those with AI expertise. This trend is driven by the tightening of venture funding and the stabilization of valuations, allowing larger startups to acquire smaller ones at reasonable valuations.",
+      "evidence_urls": [
+        "https://news.crunchbase.com/ma/startup-acquisitions-acquihire-growing-ai-fintech-2025/"
+      ]
+    },
+    {
+      "topic": "AI in Fashion",
+      "description": "VC-backed startups that stitch AI and fashion together are seeing strong investor interest. As clothing brands continue to battle supply-chain pressures, consumer churn, and shifting online behavior, AI tools will remain on trend in coming seasons.",
+      "evidence_urls": [
+        "https://news.crunchbase.com/venture/vc-backed-ai-fashion-startups-funded-zhiyi-finesse/"
+      ]
+    },
+    {
+      "topic": "AI Adoption in Enterprises",
+      "description": "Companies like Brex are embracing the 'messiness' of AI adoption by changing their approach to software procurement. This allows them to vet potential AI tools more quickly and get them into the hands of testers faster.",
+      "evidence_urls": [
+        "https://techcrunch.com/2025/07/06/how-brex-is-keeping-up-with-ai-by-embracing-the-messiness/"
+      ]
+    },
+    {
+      "topic": "AI in India",
+      "description": "Google is scaling up AI-powered fraud detection and security operations in India, which is facing unique challenges due to its size and the sophistication of the platform. The company is promoting hardware-based security keys and multi-factor authentication to protect online presence.",
+      "evidence_urls": [
+        "https://techcrunch.com/2025/06/17/google-to-scale-up-ai-powered-fraud-detection-and-security-operations-in-india/"
+      ]
+    },
+    {
+      "topic": "US Navy's Partnership with Startups",
+      "description": "The US Navy is more aggressively telling startups, 'We want you.' The Navy's chief technology officer, Justin Fanelli, has spent the last two and a half years cutting through the red tape and shrinking the protracted procurement cycles that once made working with the military a nightmare for startups.",
+      "evidence_urls": [
+        "https://techcrunch.com/2025/06/15/the-u-s-navy-is-more-aggressively-telling-startups-we-want-you/"
+      ]
+    },
+    {
+      "topic": "Pre-Seed Funding",
+      "description": "Active Capital is defying the pre-seed slowdown with a fresh $28M fund focused on AI. The firm is seeing a resurgence in bootstrapped mindsets at pre-seed, and AI is creating a whole new category of vertical software/SaaS companies that can go way deeper than ever before.",
+      "evidence_urls": [
+        "https://news.crunchbase.com/venture/active-capital-fund-pre-seed-ai-cloud-focused/"
+      ]
+    },
+    {
+      "topic": "Asia Startup Funding",
+      "description": "China leads Asia startup funding slide in the first half of 2025, with a decline in investment and deal counts. However, other regions like Israel and Japan saw a rise in funding, with a focus on cybersecurity and AI.",
+      "evidence_urls": [
+        "https://news.crunchbase.com/venture/asia-startup-funding-slide-h1-2025-ai-cyber-data/"
+      ]
+    }
+  ],
+  "as_of_utc": "2025-08-14T05:00:38.759386+00:00",
+  "window_start_utc": "2025-08-07T05:00:38.759386+00:00",
+  "window_end_utc": "2025-08-14T05:00:38.759386+00:00",
+  "num_sources": 20
+}
