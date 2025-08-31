@@ -327,13 +327,14 @@
 
     // ---------- Load + UI wiring ----------
     let reportsLoaded = false;
+    const REPORTS_BASE = 'material/';
 
     async function loadReports() {
       const [w, e, p, f] = await Promise.all([
-        getLocalJson('weekly_report_structured.json'),
-        getLocalJson('emerging_technologies_report.json'),
-        getLocalJson('pricing_watch.json'),
-        getLocalJson('startup_funding_report.json'),
+        getLocalJson(REPORTS_BASE + 'weekly_report_structured.json'),
+        getLocalJson(REPORTS_BASE + 'emerging_technologies_report.json'),
+        getLocalJson(REPORTS_BASE + 'pricing_watch.json'),
+        getLocalJson(REPORTS_BASE + 'startup_funding_report.json'),
       ]);
       renderWeeklyTrends(w);
       renderEmergingTech(e);
