@@ -1,38 +1,199 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Startup Agent</title>
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
 
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Orbitron:wght@600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Orbitron:wght@600&display=swap"
+    rel="stylesheet">
 
   <!-- Custom CSS -->
   <style>
-    .font-orbitron { font-family: 'Orbitron', sans-serif; }
-    .font-inter { font-family: 'Inter', sans-serif; }
-    html { scroll-behavior: smooth; }
+    .font-orbitron {
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    .font-inter {
+      font-family: 'Inter', sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     .glow-overlay {
       background: radial-gradient(circle at 50% 50%, rgba(0, 183, 255, 0.12), transparent 70%);
       animation: glow 6s ease-in-out infinite alternate;
     }
+
     @keyframes glow {
-      0% { background-position: 50% 50%; }
-      100% { background-position: 60% 40%; }
+      0% {
+        background-position: 50% 50%;
+      }
+
+      100% {
+        background-position: 60% 40%;
+      }
+    }
+
+    #btnSeeReports {
+      position: relative;
+      overflow: hidden;
+      /* 限制特效範圍 */
+    }
+
+    #btnSeeReports::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      /* 從左外側開始 */
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(120deg,
+          transparent,
+          rgba(255, 255, 255, 0.6),
+          transparent);
+      animation: shimmer 3s infinite;
+    }
+
+    @keyframes shimmer {
+      0% {
+        left: -100%;
+      }
+
+      50% {
+        left: 100%;
+      }
+
+      100% {
+        left: 100%;
+      }
+    }
+
+    /* 美化右側滾動條 */
+    #reportsBody::-webkit-scrollbar {
+      width: 10px;
+      /* 整個滾動條寬度 */
+    }
+
+    #reportsBody::-webkit-scrollbar-track {
+      background: transparent;
+      /* 背景顏色 */
+    }
+
+    #reportsBody::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, #38bdf8, #2563eb);
+      /* sky-400 → blue-600 */
+      border-radius: 8px;
+      /* 圓角 */
+    }
+
+    #reportsBody::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(180deg, #0ea5e9, #1e40af);
+      /* hover 顏色更深 */
+    }
+
+    #reportsModal .modal-content {
+      background: var(--panel);
+      color: var(--text);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--line);
+    }
+
+    /* Tabs */
+    #reportsModal nav button {
+      background: var(--chip);
+      color: var(--muted);
+    }
+
+    #reportsModal nav button.active {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    /* Panels / Cards */
+
+    #reportsModal .rpanel>div {
+      background: var(--elev);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--line);
+      color: var(--text);
+    }
+
+    #reportsModal table {
+      color: var(--text);
+    }
+
+    #reportsModal th {
+      background: var(--panel);
+      color: var(--muted);
+      border-bottom: 1px solid var(--line);
+    }
+
+    #reportsModal td {
+      border-bottom: 1px solid var(--line);
+    }
+
+    /* 整個頁面全域滾動條樣式 */
+    html::-webkit-scrollbar {
+      width: 12px;
+      /* 滾動條寬度 */
+    }
+
+    html::-webkit-scrollbar-track {
+      background: transparent;
+      /* 背景色，可改成 #111/半透明 */
+    }
+
+    html::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, #38bdf8, #2563eb);
+      /* sky-400 → blue-600 */
+    }
+
+    html::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(180deg, #0ea5e9, #1e40af);
+    }
+
+    #typingText::after {
+      content: "|";
+      animation: blink 1s infinite;
+      margin-left: 4px;
+      color: #38bdf8;
+      /* cyan accent */
+    }
+
+    @keyframes blink {
+
+      0%,
+      50% {
+        opacity: 1;
+      }
+
+      50%,
+      100% {
+        opacity: 0;
+      }
     }
   </style>
 </head>
 
-<body class="text-white font-inter scroll-smooth">
+<body class="text-white font-inter scroll-smooth"
+  style="background: url('material/BG.gif') center/cover fixed; filter: brightness(0.6);">
 
   <!-- Navbar -->
-  <header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-8 py-4 bg-black/40 backdrop-blur-md">
+  <header
+    class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-8 py-4 bg-black/70 backdrop-blur-md shadow-md">
     <div class="flex items-center gap-2">
-      <span class="text-2xl font-orbitron font-bold text-white">Startup Program</span>
+      <span class="text-2xl font-orbitron font-bold text-white">Startup Agent</span>
     </div>
     <nav class="space-x-6 text-white text-lg font-medium hidden sm:block">
       <a href="#home" class="hover:text-blue-400 transition">Home</a>
@@ -43,17 +204,15 @@
   </header>
 
   <!-- Page1-1 Home -->
-  <section id="home" class="relative min-h-screen flex flex-col items-center justify-center text-center px-4 pt-32"
-           style="background-image: url('material/BG.gif'); background-size: cover; background-position: center;">
-    <div class="absolute inset-0 glow-overlay z-0"></div>
+  <section id="home" class="relative min-h-screen flex flex-col items-center justify-center text-center px-4 pt-32">
+    <div class="absolute inset-0 bg-black/70 backdrop-blur-md"></div>
 
     <div class="z-10">
       <h1 class="text-4xl sm:text-5xl md:text-6xl font-orbitron font-semibold leading-tight mb-6">
         An intelligent assistant<br>for startups
       </h1>
-      <p class="text-lg sm:text-xl text-gray-200 leading-relaxed max-w-3xl mx-auto">
-        Generate investor-ready proposal reports, Combining interactive AI guidance, cutting-edge industry insights, and data analytics.
-      </p>
+      <p id="typingText" class="text-lg sm:text-xl text-gray-200 leading-relaxed max-w-3xl mx-auto"></p>
+
     </div>
 
     <!-- Scroll hint -->
@@ -63,41 +222,45 @@
   </section>
 
   <!-- Page1-2 About Us -->
-  <section id="about"
-           class="min-h-screen flex flex-col justify-center items-center bg-[url('material/BG.gif')] bg-cover bg-center relative px-6 text-center">
+  <section id="about" class="min-h-screen flex flex-col justify-center items-center relative px-6 text-center">
     <div class="absolute inset-0 bg-black/70 backdrop-blur-md"></div>
 
     <div class="relative z-10 max-w-3xl">
-      <h2 class="text-3xl sm:text-4xl font-orbitron font-bold mb-10 text-white">About Us</h2>
+      <h2 class="text-3xl sm:text-4xl font-orbitron font-bold mb-10 text-white">TechCrunch Reports</h2>
 
       <ul class="text-left text-lg text-white space-y-6">
         <li class="flex items-start gap-3">
           <span class="text-red-400 text-2xl">✔</span>
-          <span><strong>Complete a guided questionnaire</strong> with AI chatbot assistance</span>
+          <span><strong>Spot fresh market shifts</strong> before they become mainstream.</span>
         </li>
         <li class="flex items-start gap-3">
           <span class="text-red-400 text-2xl">✔</span>
-          <span><strong>Explore current industry trends</strong> via dynamic word clouds</span>
+          <span><strong>Identify the key players</strong>, partners, and rising challengers in your space.</span>
         </li>
         <li class="flex items-start gap-3">
           <span class="text-red-400 text-2xl">✔</span>
-          <span><strong>Visualize predictive analytics dashboards</strong> for success rate and market position</span>
+          <span><strong>Monitor competitor pricing</strong>, packaging, and positioning all in one place.</span>
         </li>
         <li class="flex items-start gap-3">
           <span class="text-red-400 text-2xl">✔</span>
-          <span><strong>Automatically generate and refine</strong> investment proposal reports through conversation</span>
+          <span><strong>Track where capital is flowing</strong>—rounds, sectors, and check sizes—to align with the right
+            investors.</span>
         </li>
       </ul>
     </div>
 
+    <!-- NEW: See Reports -->
+    <button id="btnSeeReports"
+      class="inline-block bg-white/10 hover:bg-white/20 text-white font-semibold text-lg px-6 py-3 rounded-xl ring-1 ring-white/40 shadow-lg transition duration-300">
+      See Reports
+    </button>
     <div class="absolute bottom-10 z-10 animate-bounce">
       <a href="#cta" class="text-white text-3xl">⌄</a>
     </div>
   </section>
 
   <!-- Page1-3 CTA -->
-  <section id="cta"
-           class="min-h-screen flex flex-col justify-center items-center bg-[url('material/BG.gif')] bg-cover bg-center relative px-6 text-center">
+  <section id="cta" class="min-h-screen flex flex-col justify-center items-center relative px-6 text-center">
     <div class="absolute inset-0 bg-black/70 backdrop-blur-md"></div>
 
     <div class="relative z-10 max-w-2xl space-y-6">
@@ -114,59 +277,57 @@
       <!-- Buttons -->
       <div class="mt-4 flex items-center justify-center gap-3">
         <a href="survey.html" target="_blank"
-           class="inline-block bg-gradient-to-r from-sky-400 to-blue-600 hover:from-sky-500 hover:to-blue-700 text-white font-semibold text-lg px-6 py-3 rounded-xl shadow-lg transition duration-300">
+          class="inline-block bg-gradient-to-r from-sky-400 to-blue-600 hover:from-sky-500 hover:to-blue-700 text-white font-semibold text-lg px-6 py-3 rounded-xl shadow-lg transition duration-300">
           Let's Get Started
         </a>
 
-        <!-- NEW: See Reports -->
-        <button id="btnSeeReports"
-                class="inline-block bg-white/10 hover:bg-white/20 text-white font-semibold text-lg px-6 py-3 rounded-xl ring-1 ring-white/40 shadow-lg transition duration-300">
-          See Reports
-        </button>
+
+      </div>
+    </div>
+
+    <!-- Reports Modal -->
+    <div id="reportsModal" class="hidden fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm p-4">
+      <div class="mx-auto max-w-6xl modal-content flex flex-col max-h-[85vh] overflow-hidden">
+        <div class="flex items-center justify-between px-5 py-3 border-b">
+          <h3 class="text-lg font-semibold">TechCrunch Weekly Reports</h3>
+          <button id="closeReports" class="px-3 py-1 rounded-md text-slate-600 hover:bg-slate-100">Close</button>
+        </div>
+
+        <!-- Tabs -->
+        <nav class="px-4 py-3 border-b flex flex-wrap gap-2 text-sm">
+          <button class="rtab px-3 py-2 rounded-md bg-slate-900 text-white" data-rtab="weekly">Weekly Trends</button>
+          <button class="rtab px-3 py-2 rounded-md hover:bg-slate-200" data-rtab="emerging">Emerging Tech</button>
+          <button class="rtab px-3 py-2 rounded-md hover:bg-slate-200" data-rtab="pricing">Pricing Watch</button>
+          <button class="rtab px-3 py-2 rounded-md hover:bg-slate-200" data-rtab="funding">Funding</button>
+        </nav>
+
+        <!-- Panels -->
+        <div id="reportsBody" class="p-4 overflow-y-auto grow">
+          <section id="rpanel-weekly" class="rpanel grid gap-3"></section>
+          <section id="rpanel-emerging" class="rpanel hidden grid gap-3"></section>
+          <section id="rpanel-pricing" class="rpanel hidden grid gap-3"></section>
+          <section id="rpanel-funding" class="rpanel hidden grid gap-3"></section>
+        </div>
+
+        <div class="px-5 py-2 text-xs text-slate-500 border-t">
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Reports Modal -->
-  <div id="reportsModal" class="hidden fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm p-4">
-    <div class="mx-auto max-w-6xl bg-white text-slate-900 rounded-2xl shadow-2xl flex flex-col max-h-[85vh] overflow-hidden">
-      <div class="flex items-center justify-between px-5 py-3 border-b">
-        <h3 class="text-lg font-semibold">Reports</h3>
-        <button id="closeReports" class="px-3 py-1 rounded-md text-slate-600 hover:bg-slate-100">Close</button>
-      </div>
 
-      <!-- Tabs -->
-      <nav class="px-4 py-3 border-b flex flex-wrap gap-2 text-sm">
-        <button class="rtab px-3 py-2 rounded-md bg-slate-900 text-white" data-rtab="weekly">Weekly Trends</button>
-        <button class="rtab px-3 py-2 rounded-md hover:bg-slate-200" data-rtab="emerging">Emerging Tech</button>
-        <button class="rtab px-3 py-2 rounded-md hover:bg-slate-200" data-rtab="pricing">Pricing Watch</button>
-        <button class="rtab px-3 py-2 rounded-md hover:bg-slate-200" data-rtab="funding">Funding</button>
-      </nav>
-
-      <!-- Panels -->
-      <div id="reportsBody" class="p-4 overflow-y-auto grow">
-        <section id="rpanel-weekly"   class="rpanel grid gap-3"></section>
-        <section id="rpanel-emerging" class="rpanel hidden grid gap-3"></section>
-        <section id="rpanel-pricing"  class="rpanel hidden grid gap-3"></section>
-        <section id="rpanel-funding"  class="rpanel hidden grid gap-3"></section>
-      </div>
-
-      <div class="px-5 py-2 text-xs text-slate-500 border-t">
-      </div>
-    </div>
-  </div>
 
   <!-- Scripts -->
   <script>
     // ---------- Helpers ----------
     const $ = s => document.querySelector(s);
     const $$ = s => Array.from(document.querySelectorAll(s));
-    const esc = s => (s ?? '').toString().replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
+    const esc = s => (s ?? '').toString().replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m]));
     const link = (url, text) => `<a href="${url}" target="_blank" class="text-sky-700 hover:underline">${esc(text || url)}</a>`;
 
     // Try plain path first (Live Server), then /static/ (FastAPI mount)
     async function getLocalJson(path) {
-      const attempts = [path, '/static/' + path].map(p => p.replace(/^\.\//,''));
+      const attempts = [path, '/static/' + path].map(p => p.replace(/^\.\//, ''));
       let lastErr;
       for (const p of attempts) {
         try {
@@ -183,10 +344,10 @@
       if (typeof raw === 'number') return raw;
       const s = String(raw).trim();
       if (/^\d([\d,.\s])*$/i.test(s)) {
-        const n = Number(s.replace(/[, ]/g,''));
+        const n = Number(s.replace(/[, ]/g, ''));
         return Number.isFinite(n) ? n : 0;
       }
-      const up = s.replace(/[, ]+/g,' ').toUpperCase();
+      const up = s.replace(/[, ]+/g, ' ').toUpperCase();
       const m = up.match(/(?:US\$|\$)\s*([\d.]+)\s*(K|M|B|THOUSAND|MILLION|BILLION)?/i);
       if (!m) return 0;
       let n = parseFloat(m[1] || '0');
@@ -196,10 +357,10 @@
       else if (suf === 'b' || suf === 'billion') n *= 1e9;
       return Number.isFinite(n) ? n : 0;
     }
-    const usdShort = n => n >= 1e9 ? '$' + (n/1e9).toFixed(1).replace(/\.0$/,'') + 'B'
-                       : n >= 1e6 ? '$' + (n/1e6).toFixed(1).replace(/\.0$/,'') + 'M'
-                       : n >= 1e3 ? '$' + (n/1e3).toFixed(1).replace(/\.0$/,'') + 'K'
-                       : '$' + Math.round(n).toLocaleString();
+    const usdShort = n => n >= 1e9 ? '$' + (n / 1e9).toFixed(1).replace(/\.0$/, '') + 'B'
+      : n >= 1e6 ? '$' + (n / 1e6).toFixed(1).replace(/\.0$/, '') + 'M'
+        : n >= 1e3 ? '$' + (n / 1e3).toFixed(1).replace(/\.0$/, '') + 'K'
+          : '$' + Math.round(n).toLocaleString();
 
     function emptyState() {
       return `<div class="text-sm text-slate-500">No items found.</div>`;
@@ -216,9 +377,9 @@
             <div class="flex items-start justify-between gap-3">
               <h4 class="text-base font-semibold">${esc(it.topic || '(untitled)')}</h4>
             </div>
-            <p class="mt-1 text-sm text-slate-700">${esc(it.description || '')}</p>
+            <p class="mt-1 text-sm text-slate-300 font-semibold">${esc(it.description || '')}</p>
             <div class="mt-2 text-xs text-slate-600 flex gap-2 flex-wrap">
-              ${(it.evidence_urls || []).slice(0,5).map(u => link(u, 'source')).join(' ')}
+              ${(it.evidence_urls || []).slice(0, 5).map(u => link(u, 'source')).join(' ')}
             </div>
           </div>
         `);
@@ -234,13 +395,13 @@
           <div class="bg-white rounded-xl shadow p-4">
             <div class="flex flex-wrap items-center gap-2">
               <h4 class="text-base font-semibold">${esc(x.technology || '(technology)')}</h4>
-              ${x.maturity ? `<span class="px-2 py-0.5 text-xs rounded-full bg-slate-100">${esc(x.maturity)}</span>` : ''}
+              ${x.maturity ? `<span class="px-2 py-0.5 text-xs rounded-full" style="background:#38bdf8; color:#fff;">${esc(x.maturity)}</span>` : ''}
             </div>
-            <p class="mt-1 text-sm text-slate-700">${esc(x.explanation || '')}</p>
+            <p class="mt-1 text-sm text-slate-300 font-semibold">${esc(x.explanation || '')}</p>
             ${Array.isArray(x.key_players) && x.key_players.length ? `<div class="mt-2 text-sm"><b>Key players:</b> ${esc(x.key_players.join(', '))}</div>` : ''}
             ${Array.isArray(x.sectors_impacted) && x.sectors_impacted.length ? `<div class="mt-1 text-sm"><b>Sectors:</b> ${esc(x.sectors_impacted.join(', '))}</div>` : ''}
             <div class="mt-2 text-xs text-slate-600 flex gap-2 flex-wrap">
-              ${(x.evidence_urls || []).slice(0,5).map(u => link(u, 'source')).join(' ')}
+              ${(x.evidence_urls || []).slice(0, 5).map(u => link(u, 'source')).join(' ')}
             </div>
           </div>
         `);
@@ -256,13 +417,13 @@
           <div class="bg-white rounded-xl shadow p-4">
             <div class="flex flex-wrap items-center gap-2">
               <h4 class="text-base font-semibold">${esc(p.company || '(company)')}</h4>
-              ${p.change_type ? `<span class="px-2 py-0.5 text-xs rounded-full bg-slate-100">${esc(p.change_type)}</span>` : ''}
+              ${p.change_type ? `<span class="px-2 py-0.5 text-xs rounded-full bg-slate-100" style="background:#38bdf8; color:#fff;">${esc(p.change_type)}</span>` : ''}
             </div>
-            <p class="mt-1 text-sm text-slate-700">${esc(p.summary || '')}</p>
+            <p class="mt-1 text-sm text-slate-300 font-semibold">${esc(p.summary || '')}</p>
             ${Array.isArray(p.products_affected) && p.products_affected.length ? `<div class="mt-2 text-sm"><b>Products:</b> ${esc(p.products_affected.join(', '))}</div>` : ''}
             ${p.implications ? `<div class="mt-1 text-sm"><b>Implications:</b> ${esc(p.implications)}</div>` : ''}
             <div class="mt-2 text-xs text-slate-600 flex gap-2 flex-wrap">
-              ${(p.evidence_urls || []).slice(0,5).map(u => link(u, 'source')).join(' ')}
+              ${(p.evidence_urls || []).slice(0, 5).map(u => link(u, 'source')).join(' ')}
             </div>
           </div>
         `);
@@ -276,11 +437,11 @@
 
       // Table
       const rows = items.map(e => ({ ...e, _amt: parseUSD(e.amount) }))
-                        .sort((a,b) => b._amt - a._amt);
+        .sort((a, b) => b._amt - a._amt);
       root.insertAdjacentHTML('beforeend', `
         <div class="bg-white rounded-xl shadow p-4 overflow-auto">
           <table class="min-w-full text-sm">
-            <thead class="border-b bg-slate-50">
+            <thead class="border-b bg-slate-50" style="background:#2563eb; color:#fff;">
               <tr>
                 <th class="text-left px-3 py-2">Company</th>
                 <th class="text-left px-3 py-2">Amount</th>
@@ -302,7 +463,7 @@
             <td class="px-3 py-2">${r._amt ? usdShort(r._amt) : esc(r.amount || '')}</td>
             <td class="px-3 py-2">${esc(r.round || '')}</td>
             <td class="px-3 py-2">${esc(r.sector || '')}</td>
-            <td class="px-3 py-2">${esc((r.date || '').slice(0,10))}</td>
+            <td class="px-3 py-2">${esc((r.date || '').slice(0, 10))}</td>
             <td class="px-3 py-2">${r.source_url ? link(r.source_url, 'link') : ''}</td>
           </tr>
         `);
@@ -314,8 +475,8 @@
           <div class="bg-white rounded-xl shadow p-4">
             <div class="flex flex-wrap items-center gap-2">
               <h4 class="text-base font-semibold">${esc(f.company || '(company)')}</h4>
-              ${f.round ? `<span class="px-2 py-0.5 text-xs rounded-full bg-slate-100">${esc(f.round)}</span>` : ''}
-              ${f._amt ? `<span class="px-2 py-0.5 text-xs rounded-full bg-slate-100">${usdShort(f._amt)}</span>` : ''}
+              ${f.round ? `<span class="px-2 py-0.5 text-xs rounded-full bg-slate-100" style="background:#38bdf8; color:#fff;">${esc(f.round)}</span>` : ''}
+              ${f._amt ? `<span class="px-2 py-0.5 text-xs rounded-full bg-slate-100" style="background:#38bdf8; color:#fff;">${usdShort(f._amt)}</span>` : ''}
             </div>
             <div class="mt-1 text-sm text-slate-600">${esc(f.sector || '')}${f.date ? ' · ' + esc(f.date) : ''}</div>
             ${Array.isArray(f.investors) && f.investors.length ? `<div class="mt-2 text-sm"><b>Investors:</b> ${esc(f.investors.join(', '))}</div>` : ''}
@@ -359,13 +520,29 @@
     // Tabs
     $$('.rtab').forEach(btn => {
       btn.addEventListener('click', () => {
-        $$('.rtab').forEach(b => b.classList.remove('bg-slate-900','text-white'));
-        btn.classList.add('bg-slate-900','text-white');
+        $$('.rtab').forEach(b => b.classList.remove('bg-slate-900', 'text-white'));
+        btn.classList.add('bg-slate-900', 'text-white');
         $$('.rpanel').forEach(p => p.classList.add('hidden'));
         $('#rpanel-' + btn.dataset.rtab).classList.remove('hidden');
         $('#reportsBody').scrollTop = 0;
       });
     });
+    document.addEventListener("DOMContentLoaded", () => {
+      const text = "Generate investor-ready proposal reports, Combining interactive AI guidance, cutting-edge industry insights, and data analytics.";
+      const el = document.getElementById("typingText");
+      let i = 0;
+
+      function typeWriter() {
+        if (i < text.length) {
+          el.innerHTML += text.charAt(i);
+          i++;
+          setTimeout(typeWriter, 20); // 打字速度 (ms)
+        }
+      }
+
+      typeWriter();
+    });
   </script>
 </body>
+
 </html>

@@ -2,116 +2,108 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="utf-8" />
-  <title>Startup Result</title>
+  <title>Company Insight Report</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <!-- 簡潔風格 -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <style>
-    :root { --bg:#0b0f14; --card:#131a22; --ink:#e7eef7; --muted:#9fb3c8; --accent:#4db6ff; --bad:#ff6b6b; --ok:#ffd166; --good:#5ad19a; }
-    body{ margin:0; font-family: ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial; background:var(--bg); color:var(--ink); }
-    .wrap{ max-width:1100px; margin:24px auto; padding:0 16px; }
-    .row{ display:grid; gap:16px; }
-    .grid-2{ grid-template-columns: 1fr 1fr; }
-    .grid-3{ grid-template-columns: repeat(3, 1fr); }
-    .card{ background:var(--card); border:1px solid #1e2733; border-radius:16px; padding:16px; box-shadow:0 1px 12px #0006; }
-    .title{ font-size:20px; margin:0 0 8px; }
-    .muted{ color:var(--muted); }
-    .badge{ padding:2px 8px; border-radius:999px; font-size:12px; border:1px solid #2a3646; color:#cfe5ff; }
-    .chip{ padding:6px 10px; border-radius:8px; background:#0f1720; border:1px solid #1f2a38; }
-    .kpi{ display:flex; gap:8px; align-items:center; }
-    .kpi .dot{ width:10px; height:10px; border-radius:50%; background:var(--good);}
-    .table{ width:100%; border-collapse: collapse; }
-    .table th,.table td{ border-top:1px solid #223041; padding:10px 8px; text-align:left; vertical-align:top;}
-    .table th{ color:#b8c9dc; font-weight:600; }
-    .btn{ border:1px solid #274257; background:#0f1b27; color:#cfe5ff; padding:8px 12px; border-radius:10px; cursor:pointer;}
-    .btn.active{ background:var(--accent); color:#00121f; border-color:transparent; }
-    .pill{ display:inline-flex; gap:6px; align-items:center; border:1px solid #213244; padding:6px 10px; border-radius:999px; }
-    .hero{ font-size:18px; line-height:1.5; }
-    .grid-auto{ display:grid; grid-template-columns: 220px 1fr; gap:12px; }
-  </style>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+  <link rel="stylesheet" href="result.css" />
 </head>
 <body>
-  <div class="wrap">
-    <!-- Source Switch -->
-    <div class="row grid-auto card" style="align-items:center;">
-      <div><strong>Data Source</strong></div>
-      <div>
-        <button id="btnGrowjo" class="btn active">Growjo</button>
-        <button id="btnCrunchbase" class="btn">Crunchbase</button>
+  <header class="head">
+    <div class="head-inner">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div class="title">Insight Report</div>
+      </div>
+      <div class="toolbar">
+        <button class="btn" id="btnPrint" title="列印或另存 PDF">Export to PDF</button>
+        <button class="btn outline" id="btnLoadSample" title="Load sessionStorage">Load sample</button>
+        <span class="badge"><span class="marker m2" style="width:10px;height:10px;border-radius:50%"></span>StartUp Agent</span>
       </div>
     </div>
+  </header>
 
-    <!-- Snapshot -->
-    <div class="card">
-      <h2 class="title">Company Snapshot</h2>
-      <div id="snapshot" class="row grid-3"></div>
-    </div>
+  <main class="container">
+    <!-- 1) 封面與總結 -->
+    <section class="card" id="coverCard">
+      <div class="kicker">Executive Summary</div>
+      <h2 id="companyOneLiner" class="one-liner">請先於 <code class="inline">sessionStorage</code> 寫入 <code class="inline">surveyResult</code> 資料</h2>
+      <div class="chips" id="adjectives"></div>
+      <div class="takeaways" id="takeaways"></div>
+    </section>
 
-    <!-- Quick Diagnosis -->
-    <div class="card">
-      <h2 class="title">Quick Diagnosis</h2>
-      <p id="quickDiagnosis" class="hero"></p>
-    </div>
+    <!-- 2) 圖表分析 -->
+    <section class="card">
+      <div class="kicker">Chart Analysis</div>
+      <div class="grid two">
+        <!-- Boxplot: current_employees -->
+        <div class="panel">
+          <h3>Current Employees (Box Plot)</h3>
+          <div class="legend">
+            <span><span class="marker m1"></span>Q1</span>
+            <span><span class="marker m3"></span>Whiskers (Outliers)</span>
+            <span><span class="marker m2"></span>Your Value</span>
+          </div>
+          <svg id="svgEmployees" role="img" aria-label="目前員工數箱型圖"></svg>
+          <div class="caption" id="capEmployees"></div>
+          <ul class="callouts" id="callEmployees"></ul>
+        </div>
 
-    <!-- Key Differences -->
-    <div class="card">
-      <h2 class="title">Key Differences vs. Peers</h2>
-      <table class="table" id="keyDiffs">
-        <thead><tr><th>Dimension</th><th>Your Company</th><th>Top Peer</th><th>So what</th></tr></thead>
-        <tbody></tbody>
-      </table>
-    </div>
+        <!-- Boxplot: total_funding -->
+        <div class="panel">
+          <h3>Total Funding (Box Plot)</h3>
+          <div class="legend">
+            <span><span class="marker m1"></span>Q1</span>
+            <span><span class="marker m3"></span>Whiskers (Outliers)</span>
+            <span><span class="marker m2"></span>Your Value</span>
+          </div>
+          <svg id="svgFunding" role="img" aria-label="總募資箱型圖"></svg>
+          <div class="caption" id="capFunding"></div>
+          <ul class="callouts" id="callFunding"></ul>
+        </div>
 
-    <!-- Actions + Matrix -->
-    <div class="row grid-2">
-      <div class="card">
-        <h2 class="title">Prioritized Actions (Score)</h2>
-        <canvas id="barActions" height="220"></canvas>
+        <!-- Bar: industry distribution -->
+        <div class="panel" style="grid-column: 1 / -1">
+          <h3>Industry Distribution (Top 10)</h3>
+          <div class="legend">
+            <span><span class="marker m3"></span>Peer Distribution</span>
+            <span><span class="marker m2"></span>Your Industry</span>
+          </div>
+          <svg id="svgIndustry" role="img" aria-label="產業分佈長條圖"></svg>
+          <div class="caption" id="capIndustry"></div>
+          <ul class="callouts" id="callIndustry"></ul>
+        </div>
       </div>
-      <div class="card">
-        <h2 class="title">Effort vs Impact</h2>
-        <canvas id="scatterEI" height="220"></canvas>
-      </div>
-    </div>
+    </section>
 
-    <!-- 30/60/90 -->
-    <div class="card">
-      <h2 class="title">30–60–90 Plan</h2>
-      <div class="row grid-3" id="plan"></div>
-    </div>
+    <!-- 3) Top 10 Peers -->
+    <section class="card">
+      <div class="kicker">Top 10 Peers</div>
+      <div class="muted" id="peersOverview"></div>
+      <div class="hr"></div>
+      <div class="peer-grid" id="peerGrid"></div>
+    </section>
 
-    <!-- Risks & KPIs -->
-    <div class="row grid-2">
-      <div class="card">
-        <h2 class="title">Risks & Mitigations</h2>
-        <table class="table" id="risksTbl"><thead><tr><th>Risk</th><th>Mitigation</th></tr></thead><tbody></tbody></table>
-      </div>
-      <div class="card">
-        <h2 class="title">Metrics to Track</h2>
-        <div id="kpis" class="row grid-3"></div>
-      </div>
-    </div>
+    <!-- 4) Recent News Highlights -->
+    <section class="card">
+      <div class="kicker">Recent News Highlights</div>
+      <ul class="news" id="newsList"></ul>
+      <div class="hr"></div>
+      <div class="kicker">Citations</div>
+      <div class="footnotes" id="footnotes"></div>
+    </section>
 
-    <!-- Advanced & Questions -->
-    <div class="row grid-2">
-      <div class="card">
-        <h2 class="title">Advanced Suggestions</h2>
-        <div id="advanced"></div>
-      </div>
-      <div class="card">
-        <h2 class="title">Open Questions</h2>
-        <ul id="questions"></ul>
-      </div>
-    </div>
+    <!-- 5) Recommendations -->
+    <section class="card">
+      <div class="kicker">Recommendations (No-Regret)</div>
+      <div class="grid two" id="recoList"></div>
+    </section>
 
-    <!-- Crunchbase news placeholder -->
-    <div id="newsBlock" class="card" style="display:none;">
-      <h2 class="title">News (Crunchbase)</h2>
-      <p class="muted">即將推出：依你定義的 JSON（含 citations）渲染卡片與清單。</p>
-    </div>
-  </div>
+    <!-- Fallback / Status -->
+    <section class="card" id="statusCard" style="display:none">
+      <div class="kicker">Status</div>
+      <div id="statusMsg" class="empty"></div>
+    </section>
+  </main>
 
-  <script src="./result.js"></script>
+  <script src="result.js"></script>
 </body>
 </html>

@@ -27,7 +27,8 @@ const QUESTIONS = [
   { id: 'founded', type: 'number', required: true, title: 'Founded (Year)' },
   { id: 'current_objectives', type: 'text', required: true, title: 'Current Objectives (separate with semicolons)', placeholder: 'e.g., expand into tier-2 cities; integrate AI recommendations' },
   { id: 'strengths', type: 'text', required: true, title: 'Strengths', placeholder: 'e.g., large local user base; mobile-first adoption' },
-  { id: 'weaknesses', type: 'text', required: true, title: 'Weaknesses', placeholder: 'e.g., low margins; seasonal demand swings' }
+  { id: 'weaknesses', type: 'text', required: true, title: 'Weaknesses', placeholder: 'e.g., low margins; seasonal demand swings' },
+  { id: 'description', type: 'text', required: true, title: 'Description', placeholder: 'e.g., Briefly describe your company\'s mission and vision.' }
 ];
 
 

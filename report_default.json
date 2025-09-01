@@ -1,0 +1,82 @@
+{
+  "plot": {
+    "Industry_Group": {
+      "counts": {
+        "Software": 149,
+        "Financial": 136,
+        "Artificial Intelligence": 97,
+        "Health Care": 70,
+        "Sustainability": 59,
+        "Transportation": 45,
+        "Real Estate": 43,
+        "IT": 39,
+        "Hardware": 39,
+        "Invest": 34,
+        "Energy": 30,
+        "Food": 28,
+        "Manufacturing": 26,
+        "Shopping": 17,
+        "Travel": 17,
+        "Goverment": 14,
+        "Education": 14,
+        "Other": 13,
+        "Internet": 13,
+        "Media": 12,
+        "Sales": 11,
+        "Resource": 11,
+        "Services": 11,
+        "Data": 11,
+        "Consumer Goods": 10,
+        "Sports": 10,
+        "Biotechnology": 9,
+        "Administrative Services": 6,
+        "Science": 6,
+        "Electronics": 6,
+        "Clothing": 4,
+        "Gaming": 4,
+        "Unknown": 3,
+        "Community": 1,
+        "Events": 1,
+        "Privacy": 1
+      },
+      "your_value": "Artificial Intelligence",
+      "rank": 3,
+      "rate": 9.700000000000001,
+      "description": "For **Industry_Group** , n=1000. The most common category is 'Software' (149). User's category 'Artificial Intelligence' has rank 3 and accounts for 9.70% of entries."
+    },
+    "current_employees": {
+      "q1": 87.5,
+      "median": 144,
+      "q3": 205.5,
+      "lower_whisker": 45,
+      "upper_whisker": 261,
+      "outliers": [],
+      "your_value": 47,
+      "percentile": 10,
+      "count": 10,
+      "min": 45,
+      "max": 261,
+      "description": "For **current_employees** , n=10. The IQR spans [87.5, 206] with median 144, minimum vlaue 45 and , maximum vlaue 261. User's input value is 47, around the 10.0th percentile. This lies within the whisker range."
+    },
+    "total_funding": {
+      "q1": 60800000,
+      "median": 86200000,
+      "q3": 161000000,
+      "lower_whisker": 11900000,
+      "upper_whisker": 311300000,
+      "outliers": [
+        537000000
+      ],
+      "your_value": 25000000,
+      "percentile": 11.11111111111111,
+      "count": 9,
+      "min": 11900000,
+      "max": 537000000,
+      "description": "For **total_funding** , n=9. The IQR spans [6.08e+07, 1.61e+08] with median 8.62e+07, minimum vlaue 1.19e+07 and , maximum vlaue 5.37e+08. User's input value is 2.5e+07, around the 11.1th percentile. This lies within the whisker range."
+    }
+  },
+  "report": {
+    "content": "{\"cover\": {\"adjectives\": [\"multilingual\", \"agile\", \"SMB‑focused\"], \"one_liner\": \"A lightweight, multilingual AI support platform poised to translate its APAC SME traction into the first enterprise logo.\", \"three_takeaways\": [{\"text\": \"Strong multilingual API gives a clear lead in Asian‑Pacific niche markets.\", \"direction\": \"lead\"}, {\"text\": \"Limited admin features and lack of SOC2 put the company behind enterprise‑grade peers.\", \"direction\": \"lag\"}, {\"text\": \"Headcount sits at the low end of the AI peer distribution, indicating capacity to scale.\", \"direction\": \"par\"}]}, \"charts\": {\"current_employees\": {\"caption\": \"Employee headcount compared with the top‑10 AI peers shows the company is in the lower‑quartile of staffing.\", \"callouts\": [\"bottom‑tier headcount\", \"room to scale\"]}, \"total_funding\": {\"caption\": \"Total funding sits modestly above the lower quartile but well below the capital raised by the leading AI peers.\", \"callouts\": [\"mid‑range raise\", \"needs larger rounds\"]}, \"industry_distribution\": {\"caption\": \"Artificial Intelligence ranks third among industry groups, representing roughly ten percent of the market landscape.\", \"callouts\": [\"top‑3 AI niche\", \"high growth potential\"]}}, \"peers\": {\"overview\": \"Fast‑rising AI peers are building enterprise‑grade platforms that blend generative models, multimodal intelligence, and deep integrations into core business workflows. Companies like Together AI and Luma AI are scaling GPU‑backed model services, while Crescendo and Speak focus on AI‑driven customer experience automation. Others such as Mechanical Orchard and Auditoria.AI de‑risk legacy system modernization and finance automation, respectively, showing a trend toward AI solutions that tackle regulated, high‑value enterprise functions.\", \"peer_snapshots\": [{\"company\": \"Story\", \"blurb\": \"Provides an infrastructure layer that tokenizes IP and real‑world data, enabling programmable ownership and monetization for AI applications.\"}, {\"company\": \"Midjourney\", \"blurb\": \"An independent research lab exploring new visual media mediums, delivering cutting‑edge generative image tools for creative professionals.\"}, {\"company\": \"Mechanical Orchard\", \"blurb\": \"Modernizes legacy enterprise systems with AI‑native technology, reducing risk for large organizations upgrading critical applications.\"}, {\"company\": \"krea.ai\", \"blurb\": \"Delivers free, generative AI tools for image and video creation, emphasizing intuitive editing workflows.\"}, {\"company\": \"Crescendo\", \"blurb\": \"Offers an all‑included AI CX platform that blends automation with human expertise to scale customer support across channels.\"}, {\"company\": \"Speak\", \"blurb\": \"An AI‑powered language tutor that provides instant feedback and immersive speaking practice for multilingual learners.\"}, {\"company\": \"Music.AI\", \"blurb\": \"Specializes in AI‑driven audio separation and music processing, delivering high‑quality sound solutions for creators.\"}, {\"company\": \"Luma AI\", \"blurb\": \"Builds multimodal general intelligence that can generate, understand, and act in the physical world, targeting large‑scale model deployment.\"}, {\"company\": \"Together AI\", \"blurb\": \"Offers APIs and scalable GPU clusters for training and deploying generative AI models, positioning itself as an AI acceleration cloud.\"}, {\"company\": \"Auditoria.AI\", \"blurb\": \"AI‑driven SaaS automation for corporate finance, automating AP/AR, vendor management, and cash‑flow analytics with NLP.\"}]}, \"recommendations\": [{\"keyword\": \"SOC2 certification\", \"description\": \"Prioritize achieving SOC2 compliance to remove a key barrier for enterprise buyers and align with investor expectations for secure AI services.\"}, {\"keyword\": \"Admin dashboard\", \"description\": \"Build a robust, role‑based admin console that gives large clients granular control over bots, data retention, and audit logs.\"}, {\"keyword\": \"Outbound sales motion\", \"description\": \"Hire seasoned enterprise sales talent and develop a structured outbound playbook focused on target Fortune‑500 accounts in the APAC region.\"}], \"news_bullets\": [{\"point\": \"AI mega‑rounds signal market appetite for large‑scale models\", \"detail\": \"Recent $2 billion seed rounds at Thinking Machines Lab and Safe Superintelligence show investors are willing to bankroll ambitious, enterprise‑grade AI platforms. For a founder, this underscores the importance of building a roadmap that can scale to billions of dollars of data and compute to attract comparable capital.\", \"citations\": [4]}, {\"point\": \"Enterprise‑focused AI funding is on the rise\", \"detail\": \"Funding rounds like Abridge’s $300 million Series E and Harvey’s $300 million legal‑tech raise illustrate that AI solutions targeting professional and regulated markets are drawing deep pockets. Your multilingual support could be a differentiator if you can package compliance and admin features for large firms.\", \"citations\": [4]}, {\"point\": \"AI agents for security and operations are hot investments\", \"detail\": \"Startups such as Exaforce and Decagon secured $75–$131 million to embed AI agents into SOC and customer‑service workflows. Demonstrating how your chatbot API can act as an autonomous agent for enterprise IT or security teams could open new funding pathways.\", \"citations\": [0]}, {\"point\": \"Robotics and AI hardware attract massive capital\", \"detail\": \"Apptronik’s $350 million Series A and TensorWave’s $100 million Series A for AI‑optimized chips indicate strong investor confidence in hardware that supports AI workloads. Partnering with such providers may help you meet performance expectations of large enterprises and ease SOC2‑type compliance worries.\", \"citations\": [6]}, {\"point\": \"Legal‑tech AI startups are scaling fast despite compliance gaps\", \"detail\": \"Harvey’s $300 million round shows that investors value AI that automates legal workflows even when the firms lack full compliance certifications. This suggests a path for your startup: prioritize building secure admin dashboards and pursue SOC2 to convert enterprise interest into contracts.\", \"citations\": [6]}]}",
+    "citations": "{\"[0] Startups Weekly: Tech and the law\\n\": \"https://techcrunch.com/2025/06/27/startups-weekly-tech-and-the-law/\", \"[1] The Week’s 10 Biggest Funding Rounds: AI On Top Again, Led By xAI’s Massive Raise\\n\": \"https://news.crunchbase.com/agtech-foodtech/biggest-funding-rounds-ai-xai-savvy/\", \"[2] Seed Funding Rose In These Spaces\\n\": \"https://news.crunchbase.com/seed/funding-rose-robotics-ai-legal-accounting-sectors/\", \"[3] The Week’s Biggest Funding Rounds: Safe Superintelligence’s $2B Raise Leads The Way\\n\": \"https://news.crunchbase.com/venture/biggest-funding-rounds-safe-superintelligence-mainspring/\", \"[4] The Week’s 10 Biggest Funding Rounds: AI Continues To Dominate In An Action-Packed Week\\n\": \"https://news.crunchbase.com/venture/biggest-funding-rounds-ai-thinking-machines-abridge/\", \"[5] The Week’s Biggest Funding Rounds: Pathos, Addepar Top Busy Week For Health And Fintech\\n\": \"https://news.crunchbase.com/venture/biggest-funding-rounds-pathos-addepar/\", \"[6] The Week’s Biggest Funding Rounds: Robotics And Legal Tech Top Bounce-Back Week\\n\": \"https://news.crunchbase.com/venture/biggest-funding-rounds-robotics-legal-tech-apptronik-harvey/\", \"[7] Here are the 24 US AI startups that have raised $100M or more in 2025\\n\": \"https://techcrunch.com/2025/06/18/here-are-the-24-us-ai-startups-that-have-raised-100m-or-more-in-2025/\"}"
+  }
+}

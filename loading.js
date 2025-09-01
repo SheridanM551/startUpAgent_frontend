@@ -2,7 +2,7 @@
 const BASE_URL = "http://localhost:8000";
 const RAG_API_URL = `${BASE_URL}/rag`;
 const HEALTH_URL = `${BASE_URL}/health`;
-
+const redirectUrl = `result.html`
 // === UI 元件 ===
 const loadingBox = document.getElementById("loadingBox");
 const errorBox = document.getElementById("errorBox");
@@ -30,13 +30,22 @@ const RagStatus = {
     GENERATING_NEWS_REPORT: 5,
 };
 
+// // new flow:
+// class RagStatus(Enum):
+//     IDLE = 0
+//     RETRIEVING_STATISTIC_DATA = 1
+//     GENERATING_NEWS_QUERY = 2
+//     RETRIEVING_NEWS_DATA = 3
+//     GENERATING_NEWS_BULLETS = 4
+//     GENERATING_REPORT = 5
+
 // 依序對應流程步驟（縱向向下）
 const STEPS = [
     { code: RagStatus.RETRIEVING_STATISTIC_DATA,    title: "Retrieving Statistic Data"},
-    { code: RagStatus.GENERATING_STATISTIC_REPORT,  title: "Generating Statistic Report"},
-    { code: RagStatus.GENERATING_NEWS_QUERY,        title: "Generating News Query"},
-    { code: RagStatus.RETRIEVING_NEWS_DATA,         title: "Retrieving News Data"},
-    { code: RagStatus.GENERATING_NEWS_REPORT,       title: "Generating News Report"},
+    { code: RagStatus.GENERATING_STATISTIC_REPORT,  title: "Generating News Query"},
+    { code: RagStatus.GENERATING_NEWS_QUERY,        title: "Retrieving News Data"},
+    { code: RagStatus.RETRIEVING_NEWS_DATA,         title: "Generating News Bullets"},
+    { code: RagStatus.GENERATING_NEWS_REPORT,       title: "Generating Report"},
 ];
 
 // 將數字狀態轉成可讀文字（含 IDLE 與超界防護）
@@ -44,10 +53,10 @@ function statusToText(code) {
     switch (code) {
         case RagStatus.IDLE: return "Idle";
         case RagStatus.RETRIEVING_STATISTIC_DATA:   return "Retrieving Statistic Data";
-        case RagStatus.GENERATING_STATISTIC_REPORT: return "Generating Statistic Report";
-        case RagStatus.GENERATING_NEWS_QUERY:       return "Generating News Query";
-        case RagStatus.RETRIEVING_NEWS_DATA:        return "Retrieving News Data";
-        case RagStatus.GENERATING_NEWS_REPORT:      return "Generating News Report";
+        case RagStatus.GENERATING_STATISTIC_REPORT: return "Generating News Query";
+        case RagStatus.GENERATING_NEWS_QUERY:       return "Retrieving News Data";
+        case RagStatus.RETRIEVING_NEWS_DATA:        return "Generating News Bullets";
+        case RagStatus.GENERATING_NEWS_REPORT:      return "Generating Report";
         default: return `Unknown(${code})`;
     }
 }
@@ -217,6 +226,9 @@ async function loadResult() {
         resultBox.textContent = JSON.stringify(data, null, 2);
 
         sessionStorage.setItem("surveyResult", JSON.stringify(data));
+
+        // redirect
+        window.location.href = redirectUrl;
     } catch (err) {
         stopTimer();
         stopHealthPolling();
