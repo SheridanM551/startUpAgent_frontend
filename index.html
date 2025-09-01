@@ -15,6 +15,16 @@
 
   <!-- Custom CSS -->
   <style>
+    body {
+      background: url('material/BG.gif') center/cover fixed;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.4); /* 等同 filter效果 */
+      pointer-events: none;
+    }
     .font-orbitron {
       font-family: 'Orbitron', sans-serif;
     }
@@ -183,11 +193,26 @@
         opacity: 0;
       }
     }
+    #reportsModal {
+      align-items: flex-start !important;
+      justify-content: flex-start !important;
+    }
   </style>
 </head>
 
-<body class="text-white font-inter scroll-smooth"
-  style="background: url('material/BG.gif') center/cover fixed; filter: brightness(0.6);">
+<body class="text-white font-inter scroll-smooth"></body>
+  <style>
+    body {
+      background: url('material/BG.gif') center/cover fixed;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.4); /* 等同 filter效果 */
+      pointer-events: none;
+    }
+  </style>
 
   <!-- Navbar -->
   <header
@@ -205,7 +230,7 @@
 
   <!-- Page1-1 Home -->
   <section id="home" class="relative min-h-screen flex flex-col items-center justify-center text-center px-4 pt-32">
-    <div class="absolute inset-0 bg-black/70 backdrop-blur-md"></div>
+    <div class="absolute inset-0 bg-black/50 backdrop-blur-md"></div>
 
     <div class="z-10">
       <h1 class="text-4xl sm:text-5xl md:text-6xl font-orbitron font-semibold leading-tight mb-6">
@@ -223,7 +248,7 @@
 
   <!-- Page1-2 About Us -->
   <section id="about" class="min-h-screen flex flex-col justify-center items-center relative px-6 text-center">
-    <div class="absolute inset-0 bg-black/70 backdrop-blur-md"></div>
+    <div class="absolute inset-0 bg-black/50 backdrop-blur-md"></div>
 
     <div class="relative z-10 max-w-3xl">
       <h2 class="text-3xl sm:text-4xl font-orbitron font-bold mb-10 text-white">TechCrunch Reports</h2>
@@ -261,7 +286,7 @@
 
   <!-- Page1-3 CTA -->
   <section id="cta" class="min-h-screen flex flex-col justify-center items-center relative px-6 text-center">
-    <div class="absolute inset-0 bg-black/70 backdrop-blur-md"></div>
+    <div class="absolute inset-0 bg-black/50 backdrop-blur-md"></div>
 
     <div class="relative z-10 max-w-2xl space-y-6">
       <h2 class="text-2xl sm:text-3xl md:text-4xl font-semibold text-white">
@@ -285,10 +310,12 @@
       </div>
     </div>
 
-    <!-- Reports Modal -->
+    
+  </section>
+  <!-- Reports Modal -->
     <div id="reportsModal" class="hidden fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm p-4">
       <div class="mx-auto max-w-6xl modal-content flex flex-col max-h-[85vh] overflow-hidden">
-        <div class="flex items-center justify-between px-5 py-3 border-b">
+        <div class="flex justify-between px-5 py-3 border-b">
           <h3 class="text-lg font-semibold">TechCrunch Weekly Reports</h3>
           <button id="closeReports" class="px-3 py-1 rounded-md text-slate-600 hover:bg-slate-100">Close</button>
         </div>
@@ -309,14 +336,10 @@
           <section id="rpanel-funding" class="rpanel hidden grid gap-3"></section>
         </div>
 
-        <div class="px-5 py-2 text-xs text-slate-500 border-t">
+        <div class="px-5 py-2 text-xs text-slate-500 border-t" style="text-align: left;">
         </div>
       </div>
     </div>
-  </section>
-
-
-
   <!-- Scripts -->
   <script>
     // ---------- Helpers ----------
@@ -393,7 +416,7 @@
       items.forEach(x => {
         root.insertAdjacentHTML('beforeend', `
           <div class="bg-white rounded-xl shadow p-4">
-            <div class="flex flex-wrap items-center gap-2">
+            <div class="flex flex-wrap gap-2">
               <h4 class="text-base font-semibold">${esc(x.technology || '(technology)')}</h4>
               ${x.maturity ? `<span class="px-2 py-0.5 text-xs rounded-full" style="background:#38bdf8; color:#fff;">${esc(x.maturity)}</span>` : ''}
             </div>
@@ -415,7 +438,7 @@
       items.forEach(p => {
         root.insertAdjacentHTML('beforeend', `
           <div class="bg-white rounded-xl shadow p-4">
-            <div class="flex flex-wrap items-center gap-2">
+            <div class="flex flex-wrap gap-2">
               <h4 class="text-base font-semibold">${esc(p.company || '(company)')}</h4>
               ${p.change_type ? `<span class="px-2 py-0.5 text-xs rounded-full bg-slate-100" style="background:#38bdf8; color:#fff;">${esc(p.change_type)}</span>` : ''}
             </div>
@@ -473,12 +496,12 @@
       rows.forEach(f => {
         $('#rpanel-funding').insertAdjacentHTML('beforeend', `
           <div class="bg-white rounded-xl shadow p-4">
-            <div class="flex flex-wrap items-center gap-2">
+            <div class="flex flex-wrap gap-2">
               <h4 class="text-base font-semibold">${esc(f.company || '(company)')}</h4>
               ${f.round ? `<span class="px-2 py-0.5 text-xs rounded-full bg-slate-100" style="background:#38bdf8; color:#fff;">${esc(f.round)}</span>` : ''}
               ${f._amt ? `<span class="px-2 py-0.5 text-xs rounded-full bg-slate-100" style="background:#38bdf8; color:#fff;">${usdShort(f._amt)}</span>` : ''}
             </div>
-            <div class="mt-1 text-sm text-slate-600">${esc(f.sector || '')}${f.date ? ' · ' + esc(f.date) : ''}</div>
+            <div class="mt-1 text-sm text-slate-600 font-semibold">${esc(f.sector || '')}${f.date ? ' · ' + esc(f.date) : ''}</div>
             ${Array.isArray(f.investors) && f.investors.length ? `<div class="mt-2 text-sm"><b>Investors:</b> ${esc(f.investors.join(', '))}</div>` : ''}
             <div class="mt-2 text-xs text-slate-600">${f.source_url ? link(f.source_url, 'source') : ''}</div>
           </div>

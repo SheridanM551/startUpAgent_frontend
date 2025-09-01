@@ -122,13 +122,27 @@ function drawBoxPlot(svgId, stats, userLabel) {
     }
 
     // tick labels (min, q1, med, q3, max)
-    const ticks = [{ v: min, l: "min " + formatNumber(min) }, { v: q1, l: "Q1 " + formatNumber(q1) }, { v: med, l: "Med " + formatNumber(med) }, { v: q3, l: "Q3 " + formatNumber(q3) }, { v: max, l: "max " + formatNumber(max) }];
+        // tick labels (分兩層: min/med/max 在下, q1/q3 在上)
+    const ticks = [
+        { v: min, l: "min " + formatNumber(min), row: "bottom" },
+        { v: q1, l: "Q1 " + formatNumber(q1), row: "top" },
+        { v: med, l: "Med " + formatNumber(med), row: "bottom" },
+        { v: q3, l: "Q3 " + formatNumber(q3), row: "top" },
+        { v: max, l: "max " + formatNumber(max), row: "bottom" }
+    ];
+
     ticks.forEach(t => {
         const tx = document.createElementNS("http://www.w3.org/2000/svg", "text");
-        tx.setAttribute("x", x(t.v)); tx.setAttribute("y", h - 14);
-        tx.setAttribute("text-anchor", "middle"); tx.setAttribute("fill", "#a2acc7"); tx.setAttribute("font-size", "12");
-        tx.textContent = t.l; svg.appendChild(tx);
+        tx.setAttribute("x", x(t.v));
+        // 下層 (min/med/max) 與上層 (q1/q3) 分開
+        tx.setAttribute("y", t.row === "bottom" ? h - 14 : h - 32);
+        tx.setAttribute("text-anchor", "middle");
+        tx.setAttribute("fill", "#a2acc7");
+        tx.setAttribute("font-size", "12");
+        tx.textContent = t.l;
+        svg.appendChild(tx);
     });
+
 }
 
 function drawBarChart(svgId, counts, yourCat) {
@@ -245,7 +259,7 @@ function renderNews(data) {
         const citeHtml = cites.length
             ? 'source: ' + cites.map(ci => {
                 const c = citesArr[ci];
-                const label = `[${ci + 1}]`;
+                const label = `[${ci}]`;
                 if (!c || !c.url) return `<span class="muted">${label}</span>`;
                 return `<a href="${c.url}" target="_blank" rel="noopener">${label}</a>`;
                 }).join(" ")

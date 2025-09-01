@@ -5,7 +5,7 @@
       "sector": "AI",
       "round": "Series E",
       "amount": "40000000000",
-      "date": "2023-03-01",
+      "date": "2025-08-01",
       "investors": [
         "SoftBank"
       ],
@@ -17,7 +17,7 @@
       "sector": "Defense Tech",
       "round": "Series C",
       "amount": "2500000000",
-      "date": "2025-07-21",
+      "date": "2025-05-05",
       "investors": [
         "Accel",
         "General Catalyst"
@@ -30,7 +30,7 @@
       "sector": "AI",
       "round": "Series C",
       "amount": "9000000000",
-      "date": "2025-08-01",
+      "date": "2025-07-03",
       "investors": [
         "a16z",
         "Sequoia"
@@ -43,7 +43,7 @@
       "sector": "AI",
       "round": "Series D",
       "amount": "150000000",
-      "date": "2025-06-20",
+      "date": "2025-07-21",
       "investors": [
         "a16z",
         "Sequoia"
@@ -56,7 +56,7 @@
       "sector": "Biotech",
       "round": "Series D",
       "amount": "351000000",
-      "date": "2025-05-01",
+      "date": "2025-02-27",
       "investors": [
         "a16z",
         "Sequoia"
@@ -69,7 +69,7 @@
       "sector": "Robotics",
       "round": "Series C",
       "amount": "350000000",
-      "date": "2025-07-24",
+      "date": "2025-02-13",
       "investors": [
         "a16z",
         "Sequoia"
@@ -108,7 +108,7 @@
       "sector": "Augmented Reality",
       "round": "Series C",
       "amount": "3000000000",
-      "date": "2025-01-01",
+      "date": "2025-06-10",
       "investors": [
         "a16z",
         "Sequoia"
@@ -121,7 +121,7 @@
       "sector": "Data",
       "round": "Series D",
       "amount": "100000000",
-      "date": "2025",
+      "date": "2025-06-04",
       "source_url": "https://news.crunchbase.com/venture/data-global-monthly-funding-may-2025/"
     }
   ],
