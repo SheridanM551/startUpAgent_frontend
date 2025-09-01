@@ -1,5 +1,5 @@
-// const BASE_URL = "https://startupagentbackend-production.up.railway.app";
-const BASE_URL = "http://localhost:8000";
+const BASE_URL = "https://startupagentbackend-production.up.railway.app";
+// const BASE_URL = "http://localhost:8000";
 const RAG_API_URL = `${BASE_URL}/rag`;
 const HEALTH_URL = `${BASE_URL}/health`;
 const redirectUrl = `result.html`
